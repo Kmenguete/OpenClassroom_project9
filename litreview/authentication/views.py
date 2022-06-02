@@ -16,7 +16,7 @@ def login_page(request):
             )
             if user is not None:
                 login(request, user)
-                message = f'Hello, {user.username}! You are logged in.'
+                return redirect('home')
             else:
                 message = 'Incorrect username.'
     return render(request, 'authentication/login.html', context={'form': form, 'message': message})

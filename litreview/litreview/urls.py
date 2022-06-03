@@ -23,7 +23,6 @@ from django.contrib.auth.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', authentication.views.login_page, name='login'),
     path('', LoginView.as_view(
         template_name='authentication/login.html',
         redirect_authenticated_user=True),

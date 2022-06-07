@@ -38,4 +38,5 @@ urlpatterns = [
          ),
     path('home/', reviews.views.home, name='home'),
     path('signup/', authentication.views.signup_page, name='signup'),
+    path('delete_account/<int:id>/delete/', authentication.views.user_delete, name='delete_account'),
 ]

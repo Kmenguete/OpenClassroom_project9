@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
     <p>Here this is all reviews from you and users you are following.</p>
+<p><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
 {% endblock content %}

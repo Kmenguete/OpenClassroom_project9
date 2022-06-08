@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'authentication/styles.css' %}" />
+    <div id="sign_up">
     <h2>Sign up to Litreview</h2>
     {% if form.errors %}
         {{ form.errors }}
@@ -9,4 +12,5 @@
         {% csrf_token %}
         <button type="submit">Sign up</button>
     </form>
+    </div>
 {% endblock content %}

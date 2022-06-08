@@ -1,4 +1,4 @@
-#login_form {
+#login_form, #sign_up, #password_change_form, #password_change_done, #user_delete {
 	width: 150px;
 	margin: auto;
 }

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% load static %}
+    <div id="home">
+    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <p>Here this is all reviews from you and users you are following.</p>
-<p><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
+    <p><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
+    </div>
 {% endblock content %}

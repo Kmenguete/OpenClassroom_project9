@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
     <title>Litreview</title>
 </head>
 <body>
-    {% load static %}
     <header>
-        <p><img src="{% static 'LitReview_logo.PNG' %}" alt="LitReview logo"/></p>
+        <p id="litreview_logo"><img src="{% static 'LitReview_logo.PNG' %}" alt="LitReview logo"/></p>
     </header>
     <h1>Welcome to Litreview</h1>
     {% block content %}{% endblock content %}

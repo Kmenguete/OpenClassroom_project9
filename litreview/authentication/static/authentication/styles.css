@@ -2,3 +2,12 @@
 	width: 150px;
 	margin: auto;
 }
+#login_button {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	position: relative;
+	text-align: center;
+	height: 50px;
+	width: 250 px;
+}

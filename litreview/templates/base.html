@@ -10,7 +10,6 @@
     <header>
         <p id="litreview_logo"><img src="{% static 'LitReview_logo.PNG' %}" alt="LitReview logo"/></p>
     </header>
-    <h1>Welcome to Litreview</h1>
     {% block content %}{% endblock content %}
     {% if user.is_authenticated %}
         <p>You are logged in as {{ request.user }}. <a href="{% url 'logout' %}">Log out</a></p>

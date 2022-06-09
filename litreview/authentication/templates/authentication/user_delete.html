@@ -7,7 +7,7 @@
     <p>Are you sure you want to delete your account?</p>
     <form action="" method="post">
         {% csrf_token %}
-        <input type="submit" value="Delete">
+        <input id="delete_account" type="submit" value="Delete">
     </form>
     <a href="{% url 'home' %}">Back to home page</a>
     </div>

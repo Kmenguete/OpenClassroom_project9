@@ -30,3 +30,31 @@
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }
+#change_password {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+	position: relative;
+	right: -25px;
+}
+#change_password:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+#delete_account {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+	position: relative;
+	right: -25px;
+}
+#delete_account:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}

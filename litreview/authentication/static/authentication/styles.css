@@ -2,7 +2,7 @@
 	width: 150px;
 	margin: auto;
 }
-#login_button {
+#login_button, #signup_up_button {
 	background-color: rgb(50, 50, 50);
 	color: rgb(200, 200, 200);
 	border-radius: 5px;
@@ -13,6 +13,10 @@
 	right: -25px;
 }
 #login_button:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+#signup_up_button:hover {
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }

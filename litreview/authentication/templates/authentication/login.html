@@ -5,8 +5,13 @@
     <div id="login_form">
     <p>{{ message }}</p>
     <form method="post">
-        {{ form.as_p }}
         {% csrf_token %}
+        <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        </div><br>
+    <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="Password">
+    </div><br>
         <button id="login_button" type="submit">Log in</button>
     </form>
     <p>New to LitReview? <a href="{% url 'signup' %}">Create an account.</a></p>

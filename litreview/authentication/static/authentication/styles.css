@@ -1,4 +1,4 @@
-#login_form, #sign_up, #password_change_form, #password_change_done, #user_delete {
+#sign_up, #password_change_form, #password_change_done, #user_delete {
 	width: 150px;
 	margin: auto;
 }
@@ -73,10 +73,10 @@
 	cursor: pointer;
 }
 
-.form-control {
+.form-group {
 	position: relative;
 	width: 500px;
-	right: 150px;
+	left: 400px;
 }
 #signup_link {
 	position: relative;

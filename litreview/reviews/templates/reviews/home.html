@@ -3,7 +3,8 @@
     {% load static %}
     <div id="home">
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
-    <p>Here this is all reviews from you and users you are following.</p>
+    <button id="ask_review" type="submit">Ask a review</button>
+    <button id="create_review" type="submit">Create a review</button>
     <p><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>
 {% endblock content %}

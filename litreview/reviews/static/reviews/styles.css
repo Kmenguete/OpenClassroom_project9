@@ -2,3 +2,32 @@
 	width: 150px;
 	margin: auto;
 }
+#ask_review {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+	position: relative;
+	right: 140px;
+	top: 30px;
+}
+#create_review {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+	position: relative;
+	right: -140px;
+}
+#ask_review:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+#create_review:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}

@@ -2,5 +2,9 @@
 	position: relative;
 	width: 150px;
 	margin: auto;
-	right: -30px;
+	left: 850px;
+}
+.navbar-nav {
+	position: relative;
+	left: 1380px;
 }

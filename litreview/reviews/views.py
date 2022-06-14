@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+
+from litreview.reviews import forms
 
 
 @login_required
@@ -9,4 +11,11 @@ def home(request):
 
 @login_required
 def ask_review(request):
-    return render(request, 'reviews/ask_review.html')
+    ask_review_form = forms.AskReviewForm()
+    if request.method == 'POST':
+        ask_review_form = forms.AskReviewForm(request.POST)
+        if ask_review_form.is_valid():
+            ask_review_form.save()
+            return redirect('home')
+    context = {'ask_review_form': ask_review_form}
+    return render(request, 'reviews/ask_review.html', context=context)

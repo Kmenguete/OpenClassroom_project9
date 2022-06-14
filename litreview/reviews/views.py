@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from . import forms
+from . import models
 
 
 @login_required
 def home(request):
-    return render(request, 'reviews/home.html')
+    tickets = models.Ticket.objects.all()
+    return render(request, 'reviews/home.html', context={'tickets': tickets})
 
 
 @login_required

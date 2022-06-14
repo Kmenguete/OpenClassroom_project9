@@ -3,7 +3,9 @@
     {% load static %}
     <div id="home">
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+     <form action="{% url 'ask_review' %}">
     <button id="ask_review" type="submit">Ask a review</button>
+     </form>
     <button id="create_review" type="submit">Create a review</button>
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>

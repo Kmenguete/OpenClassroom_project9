@@ -36,3 +36,11 @@
 	left: 25px;
 	top: 700px;
 }
+#create_ticket {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+}

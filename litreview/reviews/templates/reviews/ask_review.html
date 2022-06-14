@@ -3,11 +3,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1">
+    </div><br>
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+      <label for="exampleFormControlTextarea1" class="form-label">Description</label>
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+    </div><br>
+    <div class="mb-3">
+      <input class="form-control form-control-sm" id="formFileSm" type="file">
+    </div><br>
+    <button id="create_ticket" type="submit">Send</button>
 {% endblock content %}

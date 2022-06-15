@@ -11,7 +11,7 @@
         <p>{{ ticket.title }}</p><br>
         <p>{{ ticket.description }}</p><br>
         {% if ticket.image %}
-            <p><img src="{{ ticket.image.url }}"></p><br>
+            <img src="{{ ticket.image.url }}">
         {% endif %}
         <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
       {% endfor %}

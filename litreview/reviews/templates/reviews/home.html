@@ -7,6 +7,12 @@
     <button id="ask_review" type="submit">Ask a review</button>
      </form>
     <button id="create_review" type="submit">Create a review</button>
+     {% for ticket in tickets %}
+        <p>You asked for a review</p><br>
+        <p>{{ ticket.title }}</p><br>
+        <p>{{ ticket.description }}</p><br>
+        <p><img src="{{ ticket.image.url }}"></p>
+      {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>
 {% endblock content %}

@@ -6,16 +6,18 @@
     {% csrf_token %}
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Title</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1">
+      <input type="text" class="form-control" id="exampleFormControlInput1" name="title">
     </div><br>
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
     </div><br>
     <div class="mb-3">
-      <input class="form-control form-control-sm" id="formFileSm" type="file">
+      <input class="form-control form-control-sm" id="formFileSm" name="image" type="file">
     </div><br>
-    <button id="create_ticket" type="submit">Send</button>
+     <form action="{% url 'home' %}">
+         <button id="create_ticket" type="submit">Send</button>
+     </form>
     </form><br>
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>

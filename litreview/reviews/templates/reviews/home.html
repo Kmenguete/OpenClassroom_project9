@@ -10,7 +10,9 @@
      {% for ticket in tickets %}
         <p>{{ ticket.title }}</p><br>
         <p>{{ ticket.description }}</p><br>
-        <p><img src="{{ ticket.image.url }}" alt="book picture"></p><br>
+        {% if ticket.image %}
+            <p><img src="{{ ticket.image.url }}"></p><br>
+        {% endif %}
         <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
       {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>

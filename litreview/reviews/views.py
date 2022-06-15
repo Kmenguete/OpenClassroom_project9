@@ -18,7 +18,7 @@ def ask_review(request):
         ask_review_form = forms.AskReviewForm(request.POST)
         if ask_review_form.is_valid():
             ticket = ask_review_form.save(commit=False)
-            ticket.uploader = request.user
+            ticket.user = request.user
             ticket.save()
             return redirect('home')
     context = {'ask_review_form': ask_review_form}

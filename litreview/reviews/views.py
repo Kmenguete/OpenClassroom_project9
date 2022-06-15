@@ -15,7 +15,7 @@ def home(request):
 def ask_review(request):
     ask_review_form = forms.AskReviewForm()
     if request.method == 'POST':
-        ask_review_form = forms.AskReviewForm(request.POST)
+        ask_review_form = forms.AskReviewForm(request.POST, files=request.FILES)
         if ask_review_form.is_valid():
             ticket = ask_review_form.save(commit=False)
             ticket.user = request.user

@@ -7,7 +7,9 @@
      <form action="{% url 'ask_review' %}">
     <button id="ask_review" type="submit">Ask a review</button>
      </form>
+     <form action="{% url 'create_review' %}">
     <button id="create_review" type="submit">Create a review</button>
+    </form>
      </div><br>
      {% for ticket in tickets %}
         <div id="flux_item">

@@ -37,10 +37,25 @@
 	top: 700px;
 }
 #create_ticket {
+	position: relative;
 	background-color: rgb(50, 50, 50);
 	color: rgb(200, 200, 200);
 	border-radius: 5px;
 	text-align: center;
 	height: 30px;
 	width: 150px;
+	left: 45px;
+}
+#create_ticket:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+.mb-3, .back_to_home_page {
+	position: relative;
+	width: 50%;
+	left: 45px;
+}
+img {
+	max-width: 100%;
+	height: auto;
 }

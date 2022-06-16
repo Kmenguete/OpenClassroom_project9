@@ -3,17 +3,23 @@
     {% load static %}
     <div id="home">
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+      <div>
      <form action="{% url 'ask_review' %}">
     <button id="ask_review" type="submit">Ask a review</button>
      </form>
     <button id="create_review" type="submit">Create a review</button>
+     </div><br>
      {% for ticket in tickets %}
+        <div id="flux_item">
         <p>{{ ticket.title }}</p><br>
         <p>{{ ticket.description }}</p><br>
+         <div>
         {% if ticket.image %}
             <img src="{{ ticket.image.url }}">
         {% endif %}
+         </div><br>
         <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
+        </div><br>
       {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>

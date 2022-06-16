@@ -56,6 +56,13 @@
 	left: 45px;
 }
 img {
-	max-width: 100%;
+	max-width: 30%;
 	height: auto;
+}
+#flux_item {
+	position: relative;
+	border-radius: 2px;
+	background-color: rgba(170, 170, 170, 0.6);
+	width: 600px;
+	left: -200px;
 }

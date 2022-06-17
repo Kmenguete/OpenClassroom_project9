@@ -3,6 +3,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <form method="post" enctype="multipart/form-data" name="ticket">
+        {% csrf_token %}
         <div class="mb-3">
       <label for="exampleFormControlInput2" class="form-label">Title</label>
       <input type="text" class="form-control" id="exampleFormControlInput2" name="title">
@@ -20,6 +21,7 @@
       <input type="text" class="form-control" id="exampleFormControlInput3" name="headline">
     </div><br>
     <form method="post" id="rating_system" name="rating">
+        {% csrf_token %}
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
           <label class="form-check-label" for="inlineRadio1">1</label>
@@ -41,6 +43,7 @@
           <label class="form-check-label" for="inlineRadio5">5</label>
         </div>
     </form><br>
+    {% csrf_token %}
     <div class="mb-3">
       <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
       <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3"></textarea>

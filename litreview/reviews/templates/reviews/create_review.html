@@ -19,27 +19,27 @@
       <label for="exampleFormControlInput3" class="form-label">Title</label>
       <input type="text" class="form-control" id="exampleFormControlInput3" name="headline">
     </div><br>
-    <form method="post" name="rating">
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">1</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">2</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
-      <label class="form-check-label" for="inlineRadio3">3</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3" disabled>
-      <label class="form-check-label" for="inlineRadio4">4</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option3" disabled>
-      <label class="form-check-label" for="inlineRadio5">5</label>
-    </div>
+    <form method="post" id="rating_system" name="rating">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+          <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+          <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+          <label class="form-check-label" for="inlineRadio3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option3">
+          <label class="form-check-label" for="inlineRadio4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option3">
+          <label class="form-check-label" for="inlineRadio5">5</label>
+        </div>
     </form><br>
     <div class="mb-3">
       <label for="exampleFormControlTextarea3" class="form-label">Description</label>
@@ -47,7 +47,7 @@
     </div><br>
     <form action="{% url 'home' %}">
          <button id="create_ticket" type="submit">Send</button>
-     </form>
+     </form><br>
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>
     </div>

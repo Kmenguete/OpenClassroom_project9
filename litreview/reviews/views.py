@@ -7,8 +7,9 @@ from . import models
 
 @login_required
 def home(request):
+    reviews = models.Review.objects.all()
     tickets = models.Ticket.objects.all()
-    return render(request, 'reviews/home.html', context={'tickets': tickets})
+    return render(request, 'reviews/home.html', context={'tickets': tickets, 'reviews': reviews})
 
 
 @login_required

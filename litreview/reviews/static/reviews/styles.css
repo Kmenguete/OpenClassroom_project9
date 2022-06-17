@@ -59,7 +59,7 @@
 	max-width: 30%;
 	height: auto;
 }
-#flux_item {
+.flux_item {
 	position: relative;
 	border-radius: 2px;
 	background-color: rgba(170, 170, 170, 0.6);

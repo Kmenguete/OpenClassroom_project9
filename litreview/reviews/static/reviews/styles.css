@@ -66,3 +66,7 @@
 	width: 600px;
 	left: -200px;
 }
+#rating_system {
+	position: relative;
+	left: 45px;
+}

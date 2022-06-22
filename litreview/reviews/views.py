@@ -38,3 +38,8 @@ def create_review(request):
             return redirect('home')
     context = {'create_review_form': create_review_form}
     return render(request, 'reviews/create_review.html', context=context)
+
+
+@login_required
+def create_new_review(request):
+    return render(request, 'reviews/create_new_reviews.html')

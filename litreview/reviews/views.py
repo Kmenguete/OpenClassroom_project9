@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView
 from . import forms
 from . import models
+from .forms import ReviewNewBookForm
+from ..authentication.models import User
 
 
 @login_required
@@ -41,5 +44,15 @@ def create_review(request):
 
 
 @login_required
-def create_new_review(request):
-    return render(request, 'reviews/create_new_reviews.html')
+class CreateNewReviewView(UpdateView):
+    model = User
+    form_class = ReviewNewBookForm
+    success_url = reverse_lazy('home')
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateNewReviewView, self).get_form_kwargs()
+        kwargs.update(instance={
+            'ask_review': self.object,
+            'create_new_review': self.object.create_new_review,
+        })
+        return kwargs

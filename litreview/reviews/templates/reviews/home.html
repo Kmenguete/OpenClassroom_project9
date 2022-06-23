@@ -11,13 +11,12 @@
     <button id="create_review" type="submit">Create a review</button>
     </form>
      </div><br>
-     {% for review in reviews %}
+     {% for new_review in new_reviews %}
         <div class="flux_item">
-            <form>{{ review.ticket }}</form>
-            <p>{{ review.rating }}</p><br>
-            <p>{{ review.headline }}</p><br>
-            <p>{{ review.body }}</p><br>
-            <p>review created on {{ review.time_created }} by {{ review.user }}</p>
+            <p>{{ new_review.rating }}</p><br>
+            <p>{{ new_review.headline }}</p><br>
+            <p>{{ new_review.body }}</p><br>
+            <p>review created on {{ new_review.time_created }} by {{ new_review.user }}</p>
         </div><br>
       {% endfor %}
      {% for ticket in tickets %}

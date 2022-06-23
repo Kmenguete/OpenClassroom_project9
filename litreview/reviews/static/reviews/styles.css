@@ -106,3 +106,10 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+.review_object {
+	position: relative;
+	border-radius: 2px;
+	background-color: rgba(130, 130, 130, 0.4);
+	width: 600px;
+	left: -200px;
+}

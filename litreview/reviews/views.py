@@ -45,9 +45,9 @@ def create_new_review(request):
     if request.method == 'POST':
         create_new_review_form = forms.CreateNewReviewForm(request.POST, files=request.FILES)
         if create_new_review_form.is_valid():
-            review = create_new_review_form.save(commit=False)
-            review.user = request.user
-            review.save()
+            new_review = create_new_review_form.save(commit=False)
+            new_review.user = request.user
+            new_review.save()
             return redirect('home')
     context = {'create_new_review_form': create_new_review_form}
     return render(request, 'reviews/create_new_review.html', context=context)

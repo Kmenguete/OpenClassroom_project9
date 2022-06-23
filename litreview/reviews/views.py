@@ -37,3 +37,17 @@ def create_review(request):
             return redirect('home')
     context = {'create_review_form': create_review_form}
     return render(request, 'reviews/create_review.html', context=context)
+
+
+@login_required
+def create_new_review(request):
+    create_new_review_form = forms.CreateNewReviewForm()
+    if request.method == 'POST':
+        create_new_review_form = forms.CreateNewReviewForm(request.POST, files=request.FILES)
+        if create_new_review_form.is_valid():
+            review = create_new_review_form.save(commit=False)
+            review.user = request.user
+            review.save()
+            return redirect('home')
+    context = {'create_new_review_form': create_new_review_form}
+    return render(request, 'reviews/create_new_review.html', context=context)

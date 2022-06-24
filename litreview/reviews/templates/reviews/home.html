@@ -12,6 +12,17 @@
     </form>
      </div><br>
       <div class="review_object">
+      {% for review_object in review_objects %}
+        <div class="flux_item">
+            <p>{{ review_object.title }}</p><br>
+            <p>{{ review_object.description }}</p><br>
+            <div>
+        {% if ticket.image %}
+            <img class="book_image" src="{{ ticket.image.url }}">
+        {% endif %}
+         </div><br>
+        </div><br>
+     {% endfor %}
      {% for new_review in new_reviews %}
         <div class="flux_item">
             <p>{{ new_review.rating }}</p><br>
@@ -20,7 +31,6 @@
             <p>review created on {{ new_review.time_created }} by {{ new_review.user }}</p>
         </div><br>
      {% endfor %}
-     </div>
      </div>
      {% for ticket in tickets %}
         <div class="flux_item">
@@ -35,4 +45,5 @@
         </div><br>
       {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
+    </div>
 {% endblock content %}

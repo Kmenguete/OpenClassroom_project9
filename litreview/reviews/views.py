@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from . import forms
 from . import models
@@ -41,13 +41,22 @@ def create_review(request):
 
 @login_required
 def create_new_review(request):
+    ticket = get_list_or_404(models.Ticket)
     create_new_review_form = forms.CreateNewReviewForm()
+    new_review_form = forms.AskReviewForm()
     if request.method == 'POST':
-        create_new_review_form = forms.CreateNewReviewForm(request.POST, files=request.FILES)
-        if create_new_review_form.is_valid():
+        new_review_form = forms.AskReviewForm(request.POST, files=request.FILES, instance=ticket)
+        create_new_review_form = forms.CreateNewReviewForm(request.POST)
+        if create_new_review_form.is_valid() and new_review_form.is_valid():
+            review_object = new_review_form.save(commit=False)
             new_review = create_new_review_form.save(commit=False)
+            review_object.user = request.user
             new_review.user = request.user
+            review_object.save()
             new_review.save()
             return redirect('home')
-    context = {'create_new_review_form': create_new_review_form}
+    context = {
+        'create_new_review_form': create_new_review_form,
+        'new_review_form': new_review_form,
+    }
     return render(request, 'reviews/create_new_review.html', context=context)

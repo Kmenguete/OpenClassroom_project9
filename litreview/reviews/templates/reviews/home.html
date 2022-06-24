@@ -12,15 +12,6 @@
     </form>
      </div><br>
       <div class="review_object">
-      {% for ticket in tickets %}
-        <div class="flux_item">
-        <p>{{ ticket.title }}</p><br>
-        <p>{{ ticket.description }}</p><br>
-        {% if ticket.image %}
-            <img class="book_image" src="{{ ticket.image.url }}">
-        {% endif %}
-      {% endfor %}
-         </div><br>
      {% for new_review in new_reviews %}
         <div class="flux_item">
             <p>{{ new_review.rating }}</p><br>

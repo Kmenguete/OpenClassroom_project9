@@ -17,8 +17,8 @@
             <p>{{ review_object.title }}</p><br>
             <p>{{ review_object.description }}</p><br>
             <div>
-        {% if ticket.image %}
-            <img class="book_image" src="{{ ticket.image.url }}">
+        {% if review_object.image %}
+            <img class="book_image" src="{{ review_object.image.url }}">
         {% endif %}
          </div><br>
         </div><br>

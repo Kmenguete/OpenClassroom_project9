@@ -13,23 +13,17 @@
      </div><br>
       <div class="review_object">
       {% for review_object in review_objects %}
-        <div class="flux_item">
             <p>{{ review_object.title }}</p><br>
             <p>{{ review_object.description }}</p><br>
-            <div>
         {% if review_object.image %}
             <img class="book_image" src="{{ review_object.image.url }}">
         {% endif %}
-         </div><br>
-        </div><br>
      {% endfor %}
      {% for new_review in new_reviews %}
-        <div class="flux_item">
             <p>{{ new_review.rating }}</p><br>
             <p>{{ new_review.headline }}</p><br>
             <p>{{ new_review.body }}</p><br>
             <p>review created on {{ new_review.time_created }} by {{ new_review.user }}</p>
-        </div><br>
      {% endfor %}
      </div>
      {% for ticket in tickets %}

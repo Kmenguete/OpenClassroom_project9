@@ -44,6 +44,9 @@ def create_review(request):
 
 @login_required
 def create_new_review(request: WSGIRequest):
+    form_ask = AskReviewForm(prefix="ask")
+    form_create = CreateReviewForm(prefix="create")
+    create_new_review_form = form_ask, form_create
     if request.method == 'POST':
         form_ask = AskReviewForm(request.POST, files=request.FILES, prefix="ask")
         form_create = CreateReviewForm(request.POST, prefix="create")
@@ -56,5 +59,11 @@ def create_new_review(request: WSGIRequest):
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
             review.save()
+
+            new_review = ticket + review
+            new_review.save(commit=False)
+            new_review.user = request.user
+            new_review.save()
+
             return redirect('home')
-    return render(request, 'reviews/create_new_review.html')
+    return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})

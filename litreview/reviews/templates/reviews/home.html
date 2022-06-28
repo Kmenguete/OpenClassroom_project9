@@ -12,16 +12,16 @@
     </form>
      </div><br>
       <div class="review_object">
-     {% for new_review in new_reviews %}
-              <p>{{ new_review.title }}</p><br>
-                <p>{{ new_review.description }}</p><br>
-            {% if new_review.image %}
-                <img class="book_image" src="{{ new_review.image.url }}"><br>
+     {% for review in reviews %}
+              <p>{{ ticket.title }}</p><br>
+                <p>{{ ticket.description }}</p><br>
+            {% if ticket.image %}
+                <img class="book_image" src="{{ ticket.image.url }}"><br>
             {% endif %}
-            <p>{{ new_review.rating }}</p><br>
-            <p>{{ new_review.headline }}</p><br>
-            <p>{{ new_review.body }}</p><br>
-            <p>review created on {{ new_review.time_created }} by {{ new_review.user }}</p>
+            <p>{{ review.rating }}</p><br>
+            <p>{{ review.headline }}</p><br>
+            <p>{{ review.body }}</p><br>
+            <p>review created on {{ review.time_created }} by {{ review.user }}</p>
      {% endfor %}
      </div><br>
      {% for ticket in tickets %}

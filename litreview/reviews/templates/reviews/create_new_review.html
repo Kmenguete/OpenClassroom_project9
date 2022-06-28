@@ -4,7 +4,14 @@
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <form>
+        <h2>Post a review</h2>
+        {% for field in create_new_review_form %}
+        {{ field.label }}
+        <div class="mb-3">
+            {{ field }}
+        </div>
+        {% endfor %}
+        <!-- <form>
             <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Title</label>
           <input type="text" class="form-control" id="exampleFormControlInput2" name="title">
@@ -36,7 +43,7 @@
         <div class="mb-3">
           <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
           <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3"></textarea>
-        </div><br>
+        </div><br> -->
         <form action="{% url 'home' %}">
              <button id="create_ticket" type="submit">Send</button>
          </form><br>

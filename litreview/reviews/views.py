@@ -1,7 +1,10 @@
+from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from . import forms
 from . import models
+from .forms import AskReviewForm, CreateReviewForm
+from .models import Ticket
 
 
 @login_required
@@ -40,22 +43,18 @@ def create_review(request):
 
 
 @login_required
-def create_new_review(request):
-    new_review_form = forms.AskReviewForm()
-    create_new_review_form = forms.CreateNewReviewForm()
+def create_new_review(request: WSGIRequest):
     if request.method == 'POST':
-        new_review_form = forms.AskReviewForm(request.POST, files=request.FILES)
-        create_new_review_form = forms.CreateNewReviewForm(request.POST)
-        if create_new_review_form.is_valid() and new_review_form.is_valid():
-            review_object = new_review_form.save(commit=False)
-            new_review = create_new_review_form.save(commit=False)
-            review_object.user = request.user
-            new_review.user = request.user
-            review_object.save()
-            new_review.save()
+        form_ask = AskReviewForm(request.POST, files=request.FILES, prefix="ask")
+        form_create = CreateReviewForm(request.POST, prefix="create")
+        if form_ask.is_valid() and form_create.is_valid():
+            ticket = form_ask.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+
+            review = form_create.save(commit=False)
+            review.user = request.user
+            review.ticket = Ticket.objects.get(pk=ticket.pk)
+            review.save()
             return redirect('home')
-    context = {
-        'create_new_review_form': create_new_review_form,
-        'new_review_form': new_review_form,
-    }
-    return render(request, 'reviews/create_new_review.html', context=context)
+    return render(request, 'reviews/create_new_review.html')

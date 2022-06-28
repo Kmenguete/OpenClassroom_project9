@@ -12,10 +12,3 @@ class CreateReviewForm(forms.ModelForm):
     class Meta:
         model = models.Review
         fields = ['ticket', 'headline', 'rating', 'body']
-
-
-class CreateNewReviewForm(forms.ModelForm):
-    class Meta:
-        model = models.Review
-        exclude = ('ticket',)
-        fields = ['headline', 'rating', 'body']

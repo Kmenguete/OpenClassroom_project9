@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from . import forms
 from . import models
-from .forms import AskReviewForm, CreateReviewForm
+from .forms import AskReviewForm, CreateNewReviewForm
 from .models import Ticket
 
 
@@ -45,11 +45,11 @@ def create_review(request):
 @login_required
 def create_new_review(request: WSGIRequest):
     form_ask = AskReviewForm(prefix="ask")
-    form_create = CreateReviewForm(prefix="create")
+    form_create = CreateNewReviewForm(prefix="create")
     create_new_review_form = form_ask, form_create
     if request.method == 'POST':
         form_ask = AskReviewForm(request.POST, files=request.FILES, prefix="ask")
-        form_create = CreateReviewForm(request.POST, prefix="create")
+        form_create = CreateNewReviewForm(request.POST, prefix="create")
         if form_ask.is_valid() and form_create.is_valid():
             ticket = form_ask.save(commit=False)
             ticket.user = request.user
@@ -59,11 +59,6 @@ def create_new_review(request: WSGIRequest):
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
             review.save()
-
-            new_review = ticket + review
-            new_review.save(commit=False)
-            new_review.user = request.user
-            new_review.save()
 
             return redirect('home')
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})

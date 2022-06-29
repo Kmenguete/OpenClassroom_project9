@@ -13,11 +13,6 @@
      </div><br>
      {% for review in reviews %}
      <div class="review_object">
-              <p>{{ ticket.title }}</p><br>
-                <p>{{ ticket.description }}</p><br>
-            {% if ticket.image %}
-                <img class="book_image" src="{{ ticket.image.url }}"><br>
-            {% endif %}
             <p>{{ review.rating }}</p><br>
             <p>{{ review.headline }}</p><br>
             <p>{{ review.body }}</p><br>

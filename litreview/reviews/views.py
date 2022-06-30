@@ -10,6 +10,7 @@ from .models import Ticket
 @login_required
 def home(request):
     reviews = models.Review.objects.all()
+    ticket_of_reviews = models.Review.objects.filter().values('ticket')
     tickets = models.Ticket.objects.all()
     return render(request, 'reviews/home.html', context={'tickets': tickets, 'reviews': reviews})
 

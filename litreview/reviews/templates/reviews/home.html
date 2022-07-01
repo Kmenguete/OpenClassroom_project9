@@ -26,7 +26,7 @@
             <p>review created on {{ review.time_created }} by {{ review.user }}</p>
      </div><br>
      {% endfor %}
-     {% for ticket in tickets %}
+     {% for ticket in real_tickets %}
         <div class="flux_item">
         <p>{{ ticket.title }}</p><br>
         <p>{{ ticket.description }}</p><br>

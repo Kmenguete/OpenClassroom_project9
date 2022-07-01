@@ -12,10 +12,10 @@ def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     tickets = models.Ticket.objects.all()
-    for i in range(0, len(tickets)):
-        ticket = models.Ticket.objects.get(id=i)
+    for ticket in tickets:
         if ticket in ticket_of_reviews:
-            tickets = models.Ticket.objects.exclude(id=i)
+            real_tickets = models.Ticket.objects.exclude(id=ticket.id)
+            return real_tickets
 
     return render(request, 'reviews/home.html', context={'tickets': tickets, 'reviews': reviews})
 

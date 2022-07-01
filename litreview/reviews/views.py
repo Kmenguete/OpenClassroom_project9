@@ -11,9 +11,16 @@ from .models import Ticket
 def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
-    tickets = models.Ticket.objects.all()
+    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
 
-    return render(request, 'reviews/home.html', context={'tickets': tickets, 'reviews': reviews})
+    return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews})
+
+
+def exclude_tickets_of_reviews(ticket_of_reviews):
+    tickets_to_excludes = [ticket_of_reviews]
+    for ticket in tickets_to_excludes:
+        tickets = models.Ticket.objects.exclude(id__in=ticket)
+        return tickets
 
 
 @login_required

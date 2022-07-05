@@ -4,14 +4,15 @@
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-         <!-- <h2>Post a review</h2>
+        <!-- <h2>Post a review</h2>
         {% for field in create_new_review_form %}
         {{ field.label }}
         <div class="mb-3">
             {{ field }}
         </div>
         {% endfor %} -->
-        <div class="mb-3">
+        <form>
+            <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Title</label>
           <input type="text" class="form-control" id="exampleFormControlInput2" name="title">
         </div><br>
@@ -21,31 +22,24 @@
         </div><br>
         <div class="mb-3">
           <input class="form-control form-control-sm" id="formFileSm1" name="image" type="file">
-        </div><br>
+        </div>
+        </form><br>
         <div class="mb-3">
           <label for="exampleFormControlInput3" class="form-label">Title</label>
           <input type="text" class="form-control" id="exampleFormControlInput3" name="headline">
         </div><br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio1" value="option1" name="rating">
-              <label class="form-check-label" for="inlineRadio1">1</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio2" value="option2" name="rating">
-              <label class="form-check-label" for="inlineRadio2">2</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio3" value="option3" name="rating">
-              <label class="form-check-label" for="inlineRadio3">3</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio4" value="option4" name="rating">
-              <label class="form-check-label" for="inlineRadio4">4</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio5" value="option5" name="rating">
-              <label class="form-check-label" for="inlineRadio5">5</label>
-            </div><br>
+        <form class="rate" id="rating_system" name="rating">
+        <input type="radio" id="star5" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" value="1" />
+        <label for="star1" title="text">1 star</label>
+        </form><br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
           <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3"></textarea>
@@ -58,3 +52,4 @@
     <a href="{% url 'home' %}">Back to home page</a>
     </div>
 {% endblock content %}
+

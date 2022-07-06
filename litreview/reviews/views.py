@@ -70,9 +70,5 @@ def create_new_review(request: WSGIRequest):
             review.save()
 
             return redirect('home')
-        else:
-            print("The form is not valid.")
-    else:
-        print("This request method is not a post.")
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})

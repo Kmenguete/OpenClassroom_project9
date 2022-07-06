@@ -13,48 +13,48 @@
         {% endfor %} -->
         <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Title</label>
-          <input type="text" class="form-control" id="exampleFormControlInput2" name="title">
+          <input type="text" class="form-control" id="exampleFormControlInput2" name="ask-title">
         </div><br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea2" class="form-label">Description</label>
-          <textarea class="form-control" id="exampleFormControlTextarea2" name="description" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea2" name="ask-description" rows="3"></textarea>
         </div><br>
         <div class="mb-3">
-          <input class="form-control form-control-sm" id="formFileSm1" name="image" type="file">
+          <input class="form-control form-control-sm" id="formFileSm1" name="ask-image" type="file">
         </div><br>
         <div class="mb-3">
           <label for="exampleFormControlInput3" class="form-label">Title</label>
-          <input type="text" class="form-control" id="exampleFormControlInput3" name="headline">
+          <input type="text" class="form-control" id="exampleFormControlInput3" name="create-headline">
         </div><br>
         <div class="rate" id="rating_system">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="0" value="0">
+          <input class="form-check-input" type="radio" name="create-rating" id="0" value="0">
           <label class="form-check-label" for="0">0</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="1" value="1">
+          <input class="form-check-input" type="radio" name="create-rating" id="1" value="1">
           <label class="form-check-label" for="1">1</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="2" value="2">
+          <input class="form-check-input" type="radio" name="create-rating" id="2" value="2">
           <label class="form-check-label" for="2">2</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="3" value="3">
+          <input class="form-check-input" type="radio" name="create-rating" id="3" value="3">
           <label class="form-check-label" for="3">3</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="4" value="4">
+          <input class="form-check-input" type="radio" name="create-rating" id="4" value="4">
           <label class="form-check-label" for="4">4</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="rating" id="5" value="5">
+          <input class="form-check-input" type="radio" name="create-rating" id="5" value="5">
           <label class="form-check-label" for="5">5</label>
         </div>
         </div><br>
         <div class="mb-3"><br>
           <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
-          <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea3" name="create-body" rows="3"></textarea>
         </div><br>
         <form action="{% url 'home' %}">
              <button id="create_ticket" type="submit">Send</button>

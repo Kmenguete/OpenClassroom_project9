@@ -52,7 +52,7 @@ def create_review(request):
 
 
 @login_required
-def create_new_review(request: WSGIRequest):
+def create_new_review(request):
     form_ask = AskReviewForm(prefix="ask")
     form_create = CreateNewReviewForm(prefix="create")
     create_new_review_form = form_ask, form_create

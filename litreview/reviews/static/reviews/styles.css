@@ -77,9 +77,6 @@
 	width: 600px;
 	left: -200px;
 }
-.stars-container:before {
-  content: '★★★★★';
-}
 .stars-container:after {
   content: '★★★★★';
   color: gold;

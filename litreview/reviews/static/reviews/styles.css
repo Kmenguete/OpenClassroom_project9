@@ -77,3 +77,11 @@
 	width: 600px;
 	left: -200px;
 }
+.stars-container:before {
+  content: '5_stars_ratings.png';
+}
+.stars-container:after {
+  content: '5_stars_ratings.png';
+  color: gold;
+  overflow: hidden;
+}

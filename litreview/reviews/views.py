@@ -70,7 +70,7 @@ def create_new_review(request: WSGIRequest):
             rating = get_percentage_of_rating(review.rating)
             review.save()
 
-            return redirect('home'), rating
+            return redirect('home', context={'rating': rating})
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})
 

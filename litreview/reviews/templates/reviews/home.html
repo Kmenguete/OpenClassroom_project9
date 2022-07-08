@@ -20,7 +20,8 @@
             <img class="book_image" src="{{ review.ticket.image.url }}">
         {% endif %}
          </div><br>
-            <div><span class="stars-container stars-{{ rating }}" style="{ width: {{ rating }}%; }">
+            <div><span class="stars-container">
+                <img src="{% static 5_stars_ratings.png %}" alt="5 stars rating">
             </span></div><br>
             <p>{{ review.headline }}</p><br>
             <p>{{ review.body }}</p><br>

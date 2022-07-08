@@ -67,8 +67,14 @@ def create_new_review(request: WSGIRequest):
             review = form_create.save(commit=False)
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
+            rating = get_percentage_of_rating(review.rating)
             review.save()
 
-            return redirect('home')
+            return redirect('home'), rating
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})
+
+
+def get_percentage_of_rating(rating):
+    percentage_of_rating = (rating/5)*100
+    return percentage_of_rating

@@ -82,4 +82,3 @@
   color: gold;
   overflow: hidden;
 }
-.stars-({{ review.rating }}/5)*100:after { width: ({{ review.rating }}/5)*100%; }

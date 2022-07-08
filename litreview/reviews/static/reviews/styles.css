@@ -77,8 +77,3 @@
 	width: 600px;
 	left: -200px;
 }
-.stars-container:after {
-  content: '★★★★★';
-  color: gold;
-  overflow: hidden;
-}

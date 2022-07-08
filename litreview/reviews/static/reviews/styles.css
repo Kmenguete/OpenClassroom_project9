@@ -78,10 +78,11 @@
 	left: -200px;
 }
 .stars-container:before {
-  content: '5_stars_ratings.png';
+  content: '★★★★★';
 }
 .stars-container:after {
-  content: '5_stars_ratings.png';
+  content: '★★★★★';
   color: gold;
   overflow: hidden;
 }
+.stars-({{ review.rating }}/5)*100:after { width: ({{ review.rating }}/5)*100%; }

@@ -67,8 +67,6 @@ def create_new_review(request: WSGIRequest):
             review = form_create.save(commit=False)
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
-            rating = (review.rating/5)*100
-            rating.save()
             review.save()
 
             return redirect('home')

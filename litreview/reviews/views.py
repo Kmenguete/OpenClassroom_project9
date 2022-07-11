@@ -32,8 +32,8 @@ def compute_filled_stars(ratings_integers):
     filled_stars = ["<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>",
                     "<span>&starf;</span>"]
     for rating_integer in ratings_integers:
-        score = filled_stars[0:rating_integer]
-        no_score = empty_stars[-(len(empty_stars) - rating_integer):]
+        score = filled_stars[0:int(rating_integer)]
+        no_score = empty_stars[-(len(empty_stars) - int(rating_integer)):]
         rating = score + no_score
         return rating
 

@@ -12,10 +12,8 @@ def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    ratings = models.Review.objects.filter().values('rating')
 
-    return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews,
-                                                         'rating': ratings})
+    return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews})
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

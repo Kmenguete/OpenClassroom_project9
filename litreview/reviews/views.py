@@ -32,7 +32,12 @@ def compute_filled_stars(ratings_numbers):
         score = filled_stars[0:int(rating_number['rating'])]
         no_score = empty_stars[-(len(empty_stars) - int(rating_number['rating'])):]
         rating = score + no_score
-        return rating
+        display_rating(rating)
+
+
+def display_rating(rating):
+    for span in rating:
+        return span
 
 
 @login_required

@@ -25,17 +25,12 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
 
 
 def compute_filled_stars(ratings_integers):
-    home_page = open('home.html', 'w')
+    empty_stars = ["<span>&star;</span>", "<span>&star;</span>", "<span>&star;</span>", "<span>&star;</span>",
+                   "<span>&star;</span>"]
+    filled_stars = ["<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>",
+                    "<span>&starf;</span>"]
     for rating_integer in ratings_integers:
-        rating_system = """ <div class="star_rating">
-        <span class="star">&star;</span>
-        <span class="star">&star;</span>
-        <span class="star">&star;</span>
-        <span class="star">&star;</span>
-        <span class="star">&star;</span>
-        </div> """
-        home_page.write(rating_system)
-        home_page.close()
+        rating = filled_stars[rating_integer]
 
 
 @login_required

@@ -21,7 +21,14 @@
         {% endif %}
          </div><br>
          <div class="star_rating">
-         </div>
+             {% for rating in ratings %}
+             {{ rating[0] }}
+             {{ rating[1] }}
+             {{ rating[2] }}
+             {{ rating[3] }}
+             {{ rating[4] }}
+             {% endfor %}
+         </div><br>
             <p>{{ review.headline }}</p><br>
             <p>{{ review.body }}</p><br>
             <p>review created on {{ review.time_created }} by {{ review.user }}</p>

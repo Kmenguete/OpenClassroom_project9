@@ -35,8 +35,7 @@ def compute_filled_stars(ratings_integers):
         score = filled_stars[0:rating_integer]
         no_score = empty_stars[-(len(empty_stars) - rating_integer):]
         rating = score + no_score
-        for span in rating:
-            return span
+        return rating
 
 
 @login_required

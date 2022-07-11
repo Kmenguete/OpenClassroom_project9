@@ -25,7 +25,8 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
 
 
 def compute_filled_stars(ratings_integers):
-    pass
+    for rating_integer in ratings_integers:
+        return rating_integer
 
 
 @login_required

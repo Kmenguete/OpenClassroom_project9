@@ -12,9 +12,11 @@ def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    # ratings_integers = models.Review.objects.filter().values('rating')
+    ratings_integers = models.Review.objects.filter().values('rating')
+    ratings = compute_filled_stars(ratings_integers)
 
-    return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews})
+    return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews,
+                                                         'ratings': ratings})
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):
@@ -33,7 +35,8 @@ def compute_filled_stars(ratings_integers):
         score = filled_stars[0:rating_integer]
         no_score = empty_stars[-(len(empty_stars) - rating_integer):]
         rating = score + no_score
-        return rating
+        for span in rating:
+            return span
 
 
 @login_required

@@ -21,11 +21,43 @@
         {% endif %}
          </div><br>
          <div class="star_rating">
-            <span>&star;</span>
-            <span>&star;</span>
-            <span>&star;</span>
-            <span>&star;</span>
-            <span>&star;</span>
+             {% if review.rating == 0 %}
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+             {% elif  review.rating == 1 %}
+                <span>&starf;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+             {% elif  review.rating == 2 %}
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+             {% elif  review.rating == 3 %}
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&star;</span>
+                <span>&star;</span>
+             {% elif  review.rating == 4 %}
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&star;</span>
+             {% elif  review.rating == 5 %}
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+                <span>&starf;</span>
+             {% endif %}
          </div><br>
             <p>{{ review.headline }}</p><br>
             <p>{{ review.body }}</p><br>

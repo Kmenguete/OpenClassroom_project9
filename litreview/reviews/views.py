@@ -23,20 +23,6 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
         return tickets
 
 
-def compute_filled_stars():
-    ratings_numbers = models.Review.objects.filter().values('rating')
-    empty_stars = ["<span>&star;</span>", "<span>&star;</span>", "<span>&star;</span>", "<span>&star;</span>",
-                   "<span>&star;</span>"]
-    filled_stars = ["<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>", "<span>&starf;</span>",
-                    "<span>&starf;</span>"]
-    for rating_number in ratings_numbers:
-        score = filled_stars[0:int(rating_number['rating'])]
-        no_score = empty_stars[-(len(empty_stars) - int(rating_number['rating'])):]
-        rating_list = score + no_score
-        rating = rating_list[0] + rating_list[1] + rating_list[2] + rating_list[3] + rating_list[4]
-        return rating
-
-
 @login_required
 def ask_review(request):
     ask_review_form = forms.AskReviewForm()

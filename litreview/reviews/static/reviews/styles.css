@@ -89,3 +89,7 @@
 	top: -100px;
 	left: 200px;
 }
+#response_to_a_ticket {
+	position: relative;
+	left: 40px;
+}

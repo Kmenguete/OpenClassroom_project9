@@ -41,7 +41,7 @@ def ask_review(request):
 def create_review(request):
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
-        create_review_form = forms.CreateReviewForm(request.POST, files=request.FILES)
+        create_review_form = forms.CreateReviewForm(request.POST)
         if create_review_form.is_valid():
             review = create_review_form.save(commit=False)
             review.user = request.user

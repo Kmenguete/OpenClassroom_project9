@@ -75,6 +75,9 @@
          </div><br>
         <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
         </div><br>
+        <form action="{% url 'create_review' %}">
+        <button id="create_a_review" type="submit">Create a review</button>
+        </form>
       {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>

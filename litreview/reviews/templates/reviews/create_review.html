@@ -2,47 +2,50 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         {% csrf_token %}
-        <form  name="ticket">
+            <p>You are posting a review in response to</p><br>
             <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Title</label>
-          <input type="text" class="form-control" id="exampleFormControlInput2">
+          <input type="text" class="form-control" id="exampleFormControlInput2" name="ticket">
         </div><br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea2" class="form-label">Description</label>
-          <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" name="ticket"></textarea>
         </div><br>
         <div class="mb-3">
-          <input class="form-control form-control-sm" id="formFileSm1" type="file">
-        </div>
-        </form><br>
+          <input class="form-control form-control-sm" id="formFileSm1" type="file" name="ticket">
+        </div><br>
         <div class="mb-3">
           <label for="exampleFormControlInput3" class="form-label">Title</label>
           <input type="text" class="form-control" id="exampleFormControlInput3" name="headline">
         </div><br>
-        <form id="rating_system" name="rating">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio1" value="option1">
-              <label class="form-check-label" for="inlineRadio1">1</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio2" value="option2">
-              <label class="form-check-label" for="inlineRadio2">2</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio3" value="option3">
-              <label class="form-check-label" for="inlineRadio3">3</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio4" value="option3">
-              <label class="form-check-label" for="inlineRadio4">4</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="inlineRadio5" value="option3">
-              <label class="form-check-label" for="inlineRadio5">5</label>
-            </div>
-        </form><br>
+        <div class="rate" id="rating_system">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="0" value="0">
+          <label class="form-check-label" for="0">0</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="1" value="1">
+          <label class="form-check-label" for="1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="2" value="2">
+          <label class="form-check-label" for="2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="3" value="3">
+          <label class="form-check-label" for="3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="4" value="4">
+          <label class="form-check-label" for="4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="rating" id="5" value="5">
+          <label class="form-check-label" for="5">5</label>
+        </div>
+        </div><br>
         <div class="mb-3">
           <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
           <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3"></textarea>
@@ -50,7 +53,7 @@
         <form action="{% url 'home' %}">
              <button id="create_ticket" type="submit">Send</button>
          </form><br>
-     </form>
+    </form>
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>
     </div>

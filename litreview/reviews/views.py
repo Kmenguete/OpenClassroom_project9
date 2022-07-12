@@ -23,6 +23,14 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
         return tickets
 
 
+def get_tickets_that_needs_review(real_tickets):
+    for real_ticket in real_tickets:
+        ticket = models.Ticket.objects.get(id=real_ticket.id)
+        prefilled_ticket = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
+                                                        'image': ticket.image})
+        return prefilled_ticket
+
+
 @login_required
 def ask_review(request):
     ask_review_form = forms.AskReviewForm()

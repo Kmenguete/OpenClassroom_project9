@@ -39,8 +39,8 @@ def ask_review(request):
 
 @login_required
 def create_review(request):
-    ticket = models.Ticket.objects.get(id="The id of the ticket to which the user clicks on in order to create "
-                                          "a review")
+    ticket = models.Ticket.objects.get(id="the id of the ticket on which the user will click in "
+                                          "order to create a review")
     ticket_form = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
                                                'image': ticket.image}, instance=ticket)
     create_review_form = forms.CreateReviewForm()

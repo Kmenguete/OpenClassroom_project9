@@ -29,7 +29,7 @@ def get_prefilled_tickets():
     for ticket in real_tickets:
         ticket = models.Ticket.objects.get(id=ticket.id)
         prefilled_ticket = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
-                                                        'image': ticket.image})
+                                                        'image': ticket.image}, instance=ticket)
         return prefilled_ticket
 
 

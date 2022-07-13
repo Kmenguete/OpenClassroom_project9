@@ -42,15 +42,12 @@ def create_review(request):
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
-        ticket_of_reviews = models.Review.objects.filter().values('ticket')
-        real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-        for real_ticket in real_tickets:
-            if create_review_form.is_valid():
-                review = create_review_form.save(commit=False)
-                review.user = request.user
-                review.ticket = models.Ticket.objects.get(id=real_ticket.id)
-                review.save()
-                return redirect('home')
+        if create_review_form.is_valid():
+            review = create_review_form.save(commit=False)
+            review.user = request.user
+            review.save()
+            return redirect('home')
+
     context = {'create_review_form': create_review_form}
     return render(request, 'reviews/create_review.html', context=context)
 

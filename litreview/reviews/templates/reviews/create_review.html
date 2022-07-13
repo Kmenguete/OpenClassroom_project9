@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
     <form method="post">
         {% csrf_token %}
-            <form name="ticket">
+            <form class="flux_item" name="ticket">
             <p>{{ ticket.title }}</p><br>
             <p>{{ ticket.description }}</p><br>
              <div>

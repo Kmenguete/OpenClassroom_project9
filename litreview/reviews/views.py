@@ -38,10 +38,7 @@ def ask_review(request):
 
 
 @login_required
-def create_review(request, ticket=None):
-    ticket = models.Ticket.objects.get(id=ticket.id)
-    ticket_form = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
-                                               'image': ticket.image}, instance=ticket)
+def create_review(request):
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
@@ -50,7 +47,7 @@ def create_review(request, ticket=None):
             review.user = request.user
             review.save()
             return redirect('home')
-    context = {'create_review_form': create_review_form, 'ticket_form': ticket_form}
+    context = {'create_review_form': create_review_form}
     return render(request, 'reviews/create_review.html', context=context)
 
 

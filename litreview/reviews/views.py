@@ -23,16 +23,6 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
         return tickets
 
 
-def get_prefilled_tickets():
-    ticket_of_reviews = models.Review.objects.filter().values('ticket')
-    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    for ticket in real_tickets:
-        ticket = models.Ticket.objects.get(id=ticket.id)
-        prefilled_ticket = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
-                                                        'image': ticket.image}, instance=ticket)
-        return prefilled_ticket
-
-
 @login_required
 def ask_review(request):
     ask_review_form = forms.AskReviewForm()
@@ -49,7 +39,10 @@ def ask_review(request):
 
 @login_required
 def create_review(request):
-    ticket = get_prefilled_tickets()
+    ticket = models.Ticket.objects.get(id="The id of the ticket to which the user clicks on in order to create "
+                                          "a review")
+    ticket_form = forms.AskReviewForm(initial={'title': ticket.title, 'description': ticket.description,
+                                               'image': ticket.image}, instance=ticket)
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
@@ -58,7 +51,7 @@ def create_review(request):
             review.user = request.user
             review.save()
             return redirect('home')
-    context = {'create_review_form': create_review_form, 'ticket': ticket}
+    context = {'create_review_form': create_review_form, 'ticket_form': ticket_form}
     return render(request, 'reviews/create_review.html', context=context)
 
 

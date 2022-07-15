@@ -57,7 +57,8 @@ def get_ticket():
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
     for ticket in real_tickets:
-        return ticket
+        real_ticket = models.Ticket.objects.get(id=ticket.id)
+        return real_ticket
 
 
 @login_required

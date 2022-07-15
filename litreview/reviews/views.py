@@ -38,8 +38,8 @@ def ask_review(request):
 
 
 @login_required
-def create_review(request, ticket_id):
-    ticket = models.Ticket.objects.get(id=ticket_id)
+def create_review(request):
+    ticket = models.Ticket.objects.get(id=get_id_of_ticket())
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
@@ -52,6 +52,16 @@ def create_review(request, ticket_id):
 
     context = {'create_review_form': create_review_form, 'ticket': ticket}
     return render(request, 'reviews/create_review.html', context=context)
+
+
+def get_id_of_ticket():
+    ticket_of_reviews = models.Review.objects.filter().values('ticket')
+    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
+    for real_ticket in real_tickets:
+        ticket = models.Ticket.objects.get(id=real_ticket.id)
+        if create_review:
+            return ticket.id
+        break
 
 
 @login_required

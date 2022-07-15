@@ -43,7 +43,6 @@ def create_review(request):
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
-        create_review_form.instance.ticket = ticket
         if create_review_form.is_valid():
             review = create_review_form.save(commit=False)
             review.user = request.user

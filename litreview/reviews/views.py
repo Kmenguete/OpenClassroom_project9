@@ -57,7 +57,8 @@ def create_review(request):
 def get_id_of_ticket():
     tickets = models.Ticket.objects.all()
     for ticket in tickets:
-        return ticket.id
+        if create_review:
+            return ticket.id
 
 
 @login_required

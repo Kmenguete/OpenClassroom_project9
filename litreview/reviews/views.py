@@ -55,10 +55,9 @@ def create_review(request):
 
 
 def get_id_of_ticket():
-    ticket_of_reviews = models.Review.objects.filter().values('ticket')
-    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    for real_ticket in real_tickets:
-        return real_ticket.id
+    tickets = models.Ticket.objects.all()
+    for ticket in tickets:
+        return ticket.id
 
 
 @login_required

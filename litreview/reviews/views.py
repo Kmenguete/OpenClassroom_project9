@@ -61,7 +61,6 @@ def get_id_of_ticket():
         ticket = models.Ticket.objects.get(id=real_ticket.id)
         if create_review:
             return ticket.id
-        break
 
 
 @login_required

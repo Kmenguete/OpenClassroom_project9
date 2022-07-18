@@ -42,7 +42,7 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('delete_account/<int:id>/delete/', authentication.views.user_delete, name='delete_account'),
     path('ask_review/', reviews.views.ask_review, name='ask_review'),
-    path('create_review/', reviews.views.create_review, name='create_review'),
+    path('create_review/<int:id>/', reviews.views.create_review, name='create_review'),
     path('create_new_review/', reviews.views.create_new_review, name='create_new_review'),
 ]
 if settings.DEBUG:

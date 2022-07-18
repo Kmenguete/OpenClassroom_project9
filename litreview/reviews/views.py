@@ -46,6 +46,7 @@ def create_review(request, id):
         if create_review_form.is_valid():
             review = create_review_form.save(commit=False)
             review.user = request.user
+            review.ticket = ticket
             review.save()
             return redirect('home')
 

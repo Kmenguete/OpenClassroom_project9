@@ -6,14 +6,14 @@
     <form method="post">
         {% csrf_token %}
             <form class="flux_item">
-            <p data-model-name="ticket">{{ ticket.title }}</p><br>
-            <p data-model-name="ticket">{{ ticket.description }}</p><br>
+            <p>{{ ticket.title }}</p><br>
+            <p>{{ ticket.description }}</p><br>
              <div>
             {% if ticket.image %}
-                <img class="book_image" name="ticket" src="{{ ticket.image.url }}">
+                <img class="book_image" src="{{ ticket.image.url }}">
             {% endif %}
              </div><br>
-            <p data-model-name="ticket">ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
+            <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
             </form><br>
         <div class="mb-3">
           <label for="exampleFormControlInput3" class="form-label">Title</label>

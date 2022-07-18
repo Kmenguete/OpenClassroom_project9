@@ -38,8 +38,8 @@ def ask_review(request):
 
 
 @login_required
-def create_review(request):
-    ticket = models.Ticket.objects.get(id="The id of the ticket on which the user click to create a review")
+def create_review(request, id):
+    ticket = models.Ticket.objects.get(id=id)
     create_review_form = forms.CreateReviewForm()
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)

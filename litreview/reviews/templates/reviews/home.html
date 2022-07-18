@@ -75,7 +75,7 @@
          </div><br>
         <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
         </div><br>
-        <form action="{% url 'create_review' %}">
+        <form action="{% url 'create_review' ticket.id %}">
         <button id="create_a_review" type="submit">Create a review</button>
         </form>
       {% endfor %}

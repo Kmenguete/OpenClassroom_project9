@@ -44,7 +44,6 @@ def create_review(request, id):
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
         if create_review_form.is_valid():
-            create_review_form.instance.ticket = ticket
             review = create_review_form.save(commit=False)
             review.user = request.user
             review.save()

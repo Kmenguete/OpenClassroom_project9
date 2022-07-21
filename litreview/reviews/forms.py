@@ -9,9 +9,11 @@ class AskReviewForm(forms.ModelForm):
 
 
 class CreateReviewForm(forms.ModelForm):
+    ticket = AskReviewForm()
+
     class Meta:
         model = models.Review
-        fields = ['ticket', 'headline', 'rating', 'body']
+        fields = ['headline', 'rating', 'body']
 
 
 class CreateNewReviewForm(forms.ModelForm):

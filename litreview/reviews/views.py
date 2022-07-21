@@ -12,7 +12,6 @@ def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = models.Ticket.objects.all()
-
     return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews})
 
 
@@ -47,6 +46,7 @@ def create_review(request, id):
         if create_review_form.is_valid():
             review = create_review_form.save(commit=False)
             review.user = request.user
+            review.ticket = ticket
             review.save()
             return redirect('home')
         else:

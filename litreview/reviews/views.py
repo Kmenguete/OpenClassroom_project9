@@ -41,6 +41,7 @@ def ask_review(request):
 def create_review(request, id):
     ticket = models.Ticket.objects.get(id=id)
     create_review_form = forms.CreateReviewForm()
+    create_review_form.ticket = AskReviewForm(instance=ticket)
     if request.method == 'POST':
         create_review_form = forms.CreateReviewForm(request.POST)
         if create_review_form.is_valid():

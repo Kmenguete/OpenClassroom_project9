@@ -5,6 +5,7 @@ from . import forms
 from . import models
 from .forms import AskReviewForm, CreateNewReviewForm
 from .models import Ticket
+from itertools import chain
 
 
 @login_required
@@ -12,6 +13,7 @@ def home(request):
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
+    tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created)
     return render(request, 'reviews/home.html', context={'real_tickets': real_tickets, 'reviews': reviews})
 
 

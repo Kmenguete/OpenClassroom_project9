@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <div id="home">
+    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+      <div>
+     <form action="{% url 'ask_review' %}">
+    <button id="ask_review" type="submit">Ask a review</button>
+     </form>
+     <form action="{% url 'create_new_review' %}">
+    <button id="create_review" type="submit">Create a review</button>
+    </form>
+     </div><br>
+     {% for item in tickets_and_reviews %}
+        {% if item in reviews %}
+             <div class="review_object">
+                    <p>{{ item.ticket.title }}</p><br>
+                    <p>{{ item.ticket.description }}</p><br>
+                    <div>
+                {% if item.ticket.image %}
+                    <img class="book_image" src="{{ item.ticket.image.url }}">
+                {% endif %}
+                 </div><br>
+                 <div class="star_rating">
+                     {% if item.rating == 0 %}
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 1 %}
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 2 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 3 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 4 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 5 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                     {% endif %}
+                 </div><br>
+                    <p>{{ item.headline }}</p><br>
+                    <p>{{ item.body }}</p><br>
+                    <p>review created on {{ item.time_created }} by {{ item.user }}</p>
+             </div><br>
+        {% elif item in real_tickets %}
+            <div class="flux_item">
+            <p>{{ item.title }}</p><br>
+            <p>{{ item.description }}</p><br>
+             <div>
+            {% if item.image %}
+                <img class="book_image" src="{{ item.image.url }}">
+            {% endif %}
+             </div><br>
+            <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
+            </div><br>
+            <form action="{% url 'create_review' item.id %}">
+            <button id="create_a_review" type="submit">Create a review</button>
+            </form>
+        {% endif %}
+     {% endfor %}
+    <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
+    </div>
+{% endblock content %}

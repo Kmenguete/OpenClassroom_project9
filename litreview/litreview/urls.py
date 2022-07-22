@@ -39,6 +39,7 @@ urlpatterns = [
          name='password_change_done'
          ),
     path('home/', reviews.views.home, name='home'),
+    path('posts/', reviews.views.posts, name='posts'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('delete_account/<int:id>/delete/', authentication.views.user_delete, name='delete_account'),
     path('ask_review/', reviews.views.ask_review, name='ask_review'),

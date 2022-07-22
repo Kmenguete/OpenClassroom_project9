@@ -11,74 +11,75 @@
     <button id="create_review" type="submit">Create a review</button>
     </form>
      </div><br>
-     {% for review in reviews %}
-     <div class="review_object">
-            <p>{{ review.ticket.title }}</p><br>
-            <p>{{ review.ticket.description }}</p><br>
-            <div>
-        {% if review.ticket.image %}
-            <img class="book_image" src="{{ review.ticket.image.url }}">
+     {% for item in tickets_and_reviews %}
+        {% if item in reviews %}
+             <div class="review_object">
+                    <p>{{ item.ticket.title }}</p><br>
+                    <p>{{ item.ticket.description }}</p><br>
+                    <div>
+                {% if item.ticket.image %}
+                    <img class="book_image" src="{{ item.ticket.image.url }}">
+                {% endif %}
+                 </div><br>
+                 <div class="star_rating">
+                     {% if item.rating == 0 %}
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 1 %}
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 2 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 3 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 4 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&star;</span>
+                     {% elif  item.rating == 5 %}
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                        <span>&starf;</span>
+                     {% endif %}
+                 </div><br>
+                    <p>{{ item.headline }}</p><br>
+                    <p>{{ item.body }}</p><br>
+                    <p>review created on {{ item.time_created }} by {{ item.user }}</p>
+             </div><br>
+        {% elif item in real_tickets %}
+            <div class="flux_item">
+            <p>{{ item.title }}</p><br>
+            <p>{{ item.description }}</p><br>
+             <div>
+            {% if item.image %}
+                <img class="book_image" src="{{ item.image.url }}">
+            {% endif %}
+             </div><br>
+            <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
+            </div><br>
+            <form action="{% url 'create_review' item.id %}">
+            <button id="create_a_review" type="submit">Create a review</button>
+            </form>
         {% endif %}
-         </div><br>
-         <div class="star_rating">
-             {% if review.rating == 0 %}
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-             {% elif  review.rating == 1 %}
-                <span>&starf;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-             {% elif  review.rating == 2 %}
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-             {% elif  review.rating == 3 %}
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&star;</span>
-                <span>&star;</span>
-             {% elif  review.rating == 4 %}
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&star;</span>
-             {% elif  review.rating == 5 %}
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-                <span>&starf;</span>
-             {% endif %}
-         </div><br>
-            <p>{{ review.headline }}</p><br>
-            <p>{{ review.body }}</p><br>
-            <p>review created on {{ review.time_created }} by {{ review.user }}</p>
-     </div><br>
      {% endfor %}
-     {% for ticket in real_tickets %}
-        <div class="flux_item">
-        <p>{{ ticket.title }}</p><br>
-        <p>{{ ticket.description }}</p><br>
-         <div>
-        {% if ticket.image %}
-            <img class="book_image" src="{{ ticket.image.url }}">
-        {% endif %}
-         </div><br>
-        <p>ticket created on {{ ticket.time_created }} by {{ ticket.user }}</p>
-        </div><br>
-        <form action="{% url 'create_review' ticket.id %}">
-        <button id="create_a_review" type="submit">Create a review</button>
-        </form>
-      {% endfor %}
     <p id="delete_account_link"><a href="{% url 'delete_account' user.id %}">Delete account</a></p>
     </div>
 {% endblock content %}

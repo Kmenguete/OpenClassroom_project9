@@ -1,6 +1,6 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from . import forms
 from . import models
 from .forms import AskReviewForm, CreateNewReviewForm
@@ -23,6 +23,13 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
     for ticket in tickets_to_excludes:
         tickets = models.Ticket.objects.exclude(id__in=ticket)
         return tickets
+
+
+@login_required
+@permission_required
+def posts(request):
+    reviews = models.Review.objects.all()
+    pass
 
 
 @login_required

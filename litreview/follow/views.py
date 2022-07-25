@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from litreview.follow.forms import UserFollowForm
+from . import forms
 
 
 @login_required
 def subscriptions(request):
-    user_follow_form = UserFollowForm()
+    user_follow_form = forms.UserFollowForm()
     if request.method == 'POST':
-        user_follow_form = UserFollowForm(request.POST)
+        user_follow_form = forms.UserFollowForm(request.POST)
         if user_follow_form.is_valid():
             return redirect('home')
     context = {'user_follow_form': user_follow_form}

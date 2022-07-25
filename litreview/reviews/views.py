@@ -38,8 +38,9 @@ def posts(request):
 
 def exclude_users_tickets_of_reviews(request, ticket_of_reviews):
     tickets_to_excludes = [ticket_of_reviews]
-    tickets = models.Ticket.objects.filter(user=request.user).exclude(id__in=tickets_to_excludes)
-    return tickets
+    for ticket in tickets_to_excludes:
+        tickets = models.Ticket.objects.filter(user=request.user).exclude(id__in=ticket)
+        return tickets
 
 
 @login_required

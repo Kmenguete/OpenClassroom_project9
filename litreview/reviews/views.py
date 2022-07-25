@@ -29,11 +29,17 @@ def exclude_tickets_of_reviews(ticket_of_reviews):
 def posts(request):
     reviews = models.Review.objects.filter(user=request.user)
     ticket_of_reviews = models.Review.objects.filter(user=request.user).values('ticket')
-    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
+    real_tickets = exclude_users_tickets_of_reviews(request, ticket_of_reviews)
     tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
     return render(request, 'reviews/posts.html',
                   context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
                            'tickets': real_tickets})
+
+
+def exclude_users_tickets_of_reviews(request, ticket_of_reviews):
+    tickets_to_excludes = [ticket_of_reviews]
+    tickets = models.Ticket.objects.filter(user=request.user).exclude(id__in=tickets_to_excludes)
+    return tickets
 
 
 @login_required

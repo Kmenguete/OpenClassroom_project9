@@ -33,7 +33,7 @@ def posts(request):
     tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
     return render(request, 'reviews/posts.html',
                   context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
-                           'tickets': real_tickets})
+                           'real_tickets': real_tickets})
 
 
 def exclude_users_tickets_of_reviews(request, ticket_of_reviews):

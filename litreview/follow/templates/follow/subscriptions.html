@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'follow/styles.css' %}" />
+    <div class="mb-3">
+  <input type="search" class="form-control" id="exampleFormControlInput1" placeholder="Search">
+    </div>
+    <button id="search_button" type="submit">Search</button>
 {% endblock content %}

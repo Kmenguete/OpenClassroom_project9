@@ -20,8 +20,10 @@ from django.urls import path
 
 import authentication.views
 import reviews.views
+import follow.views
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,6 +47,7 @@ urlpatterns = [
     path('ask_review/', reviews.views.ask_review, name='ask_review'),
     path('create_review/<int:id>/', reviews.views.create_review, name='create_review'),
     path('create_new_review/', reviews.views.create_new_review, name='create_new_review'),
+    path('subscriptions/', follow.views.subscriptions, name='subscriptions'),
 ]
 if settings.DEBUG:
     urlpatterns += static(

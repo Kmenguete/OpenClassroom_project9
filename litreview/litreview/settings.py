@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'authentication',
     'reviews',
     'betterforms',
+    'follow',
 ]
 
 MIDDLEWARE = [

@@ -6,7 +6,7 @@
 	text-align: center;
 	height: 30px;
 	width: 150px;
-	left: 45px;
+	left: 1545px;
 }
 #search_button:hover {
 	background-color: rgb(100, 100, 100);
@@ -15,5 +15,6 @@
 .mb-3 {
 	position: relative;
 	width: 50%;
-	left: 45px;
+	left: 350px;
+	top: 55px;
 }

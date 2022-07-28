@@ -12,7 +12,7 @@ def subscriptions(request):
 
 @login_required
 def search_users(request):
-    user = request.user
+    user = request.GET.get('User')
     payload = []
     if user:
         users = User.objects.filter(username__icontains=user.username)

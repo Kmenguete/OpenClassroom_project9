@@ -23,9 +23,9 @@ def search_users(request):
 
 @login_required
 def follow_user(request):
-    return render(request, 'follow/subscription.html')
+    return render(request, 'follow/subscriptions.html')
 
 
 @login_required
 def unfollow_user(request):
-    return render(request, 'follow/subscription.html')
+    return render(request, 'follow/subscriptions.html')

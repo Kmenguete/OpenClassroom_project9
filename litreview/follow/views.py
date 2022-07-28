@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from . import forms
-from ..authentication.models import User
 
 
 @login_required
@@ -12,11 +11,11 @@ def subscriptions(request):
 
 @login_required
 def search_users(request):
-    users = User.objects.all()
+    user = request.user
     search_form = forms.SearchForm()
     if request.moethod == 'POST':
         pass
-    context = {'search_form': search_form, 'users': users}
+    context = {'search_form': search_form, 'user': user}
     return render(request, 'follow/subscription.html', context=context)
 
 

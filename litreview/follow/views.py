@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render
-
-from . import forms
 from ..authentication.models import User
 
 
@@ -18,13 +17,7 @@ def search_users(request):
         users = User.objects.filter(name__contain=user.username)
         for user in users:
             payload.append(user.username)
-    """
-    search_form = forms.SearchForm()
-    if request.method == 'POST':
-        pass
-    context = {'search_form': search_form, 'user': user}
-    return render(request, 'follow/subscription.html', context=context)
-    """
+    return JsonResponse({'status': 200, 'data': payload})
 
 
 @login_required

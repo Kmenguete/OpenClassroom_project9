@@ -15,6 +15,15 @@
         <button id="search_button" type="submit">Send</button>
     </form>
     <script>
-        new Autocomplete('#autocomplete', {})
+        new Autocomplete('#autocomplete', {
+            search: input =>{
+                console.log(input)
+                const url = '/search/?user=${input}'
+                return new Promise(resolve =>{
+                    fetch(url)
+                    .then(response => response.json())
+                })
+            }
+        })
     </script>
 {% endblock content %}

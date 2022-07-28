@@ -15,7 +15,7 @@ def search_users(request):
     user = request.user
     payload = []
     if user:
-        users = User.objects.filter(username__contains=user.username)
+        users = User.objects.filter(username__icontains=user.username)
         for user in users:
             payload.append(user.username)
     return JsonResponse({'status': 200, 'data': payload})

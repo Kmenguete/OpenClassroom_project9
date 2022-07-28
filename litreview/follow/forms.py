@@ -1,5 +1,5 @@
 from django import forms
 
 
-class UserFollowForm(forms.Form):
+class SearchForm(forms.Form):
     user_search = forms.CharField(max_length=50)

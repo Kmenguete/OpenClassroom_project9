@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 
 @login_required
 def subscriptions(request):
-    pass
+    return render(request, 'follow/subscription.html')
 
 
 @login_required
 def search_users(request):
-    pass
+    return render(request, 'follow/subscription.html')

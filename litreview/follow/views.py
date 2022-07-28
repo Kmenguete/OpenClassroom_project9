@@ -2,12 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from litreview.authentication.models import User
+from authentication.models import User
 
 
 @login_required
 def subscriptions(request):
-    return render(request, 'follow/subscription.html')
+    return render(request, 'follow/subscriptions.html')
 
 
 @login_required

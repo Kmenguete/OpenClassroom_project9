@@ -13,7 +13,7 @@ def subscriptions(request):
 def search_users(request):
     user = request.user
     search_form = forms.SearchForm()
-    if request.moethod == 'POST':
+    if request.method == 'POST':
         pass
     context = {'search_form': search_form, 'user': user}
     return render(request, 'follow/subscription.html', context=context)

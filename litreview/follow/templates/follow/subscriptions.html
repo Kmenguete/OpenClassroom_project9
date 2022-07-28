@@ -2,12 +2,19 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'follow/styles.css' %}" />
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">
             <p class="subscriptions_management">Follow other users</p>
+        <div id="autocomplete" class="autocomplete">
         <input class="form-control" type="search" placeholder="Username" name="user_search">
+        <ul class="autocomplete-result-list"></ul>
+        </div>
         </div>
         <button id="search_button" type="submit">Send</button>
     </form>
+    <script>
+        new Autocomplete('#autocomplete', options)
+    </script>
 {% endblock content %}

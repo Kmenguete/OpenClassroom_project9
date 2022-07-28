@@ -12,10 +12,10 @@ def subscriptions(request):
 
 @login_required
 def search_users(request):
-    user = request.GET.get('user')
+    user = request.user
     payload = []
     if user:
-        users = User.objects.filter(name__contain=user.username)
+        users = User.objects.filter(username__contains=user.username)
         for user in users:
             payload.append(user.username)
     return JsonResponse({'status': 200, 'data': payload})

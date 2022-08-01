@@ -49,6 +49,7 @@ urlpatterns = [
     path('create_new_review/', reviews.views.create_new_review, name='create_new_review'),
     path('subscriptions/', follow.views.subscriptions, name='subscriptions'),
     path('search/', follow.views.search_users, name='search_users'),
+    path('user_follows/', follow.views.user_follows, name='user_follows'),
 ]
 if settings.DEBUG:
     urlpatterns += static(

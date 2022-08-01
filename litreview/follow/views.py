@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from authentication.models import User
 
+from litreview.follow.models import UserFollows
+
 
 @login_required
 def subscriptions(request):
@@ -23,9 +25,21 @@ def search_users(request):
 
 @login_required
 def follow_user(request):
-    pass
+    if request.method == 'POST':
+        value = request.POST['value']
+        user = request.POST['user']
+        followed_user = request.POST['followed_user']
+        if value == 'follow':
+            followers_count = UserFollows.objects.create(user=user, followed_user=followed_user)
+            followers_count.save()
 
 
 @login_required
 def unfollow_user(request):
-    pass
+    if request.method == 'POST':
+        value = request.POST['value']
+        user = request.POST['user']
+        followed_user = request.POST['followed_user']
+        if value == 'unfollow':
+            followers_count = UserFollows.objects.delete(user=user, followed_user=followed_user)
+            followers_count.save()

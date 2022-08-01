@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from authentication.models import User
 
@@ -32,6 +32,7 @@ def follow_user(request):
         if value == 'follow':
             followers_count = UserFollows.objects.create(user=user, followed_user=followed_user)
             followers_count.save()
+        return redirect('follow_user/?user=' + user)
 
 
 @login_required
@@ -43,3 +44,4 @@ def unfollow_user(request):
         if value == 'unfollow':
             followers_count = UserFollows.objects.delete(user=user, followed_user=followed_user)
             followers_count.save()
+        return redirect('unfollow_user/?user=' + user)

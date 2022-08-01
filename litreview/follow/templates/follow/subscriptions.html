@@ -17,7 +17,13 @@
     <form method="post" action="{% url 'follow_user' %}">
         {% csrf_token %}
         <input type="hidden" name="user" value="" readonly/>
+        <input type="hidden" name="value" value="follow" readonly/>
         <button id="search_button" type="submit">Send</button>
+    </form>
+    <form method="post" action="{% url 'unfollow_user' %}">
+        {% csrf_token %}
+        <input type="hidden" name="followed_user" value="" readonly/>
+        <input type="hidden" name="value" value="unfollow" readonly/>
     </form>
     <script>
         new Autocomplete('#autocomplete', {

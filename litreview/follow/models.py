@@ -7,7 +7,7 @@ class UserFollows(models.Model):
     followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
 
     def __str__(self):
-        return self.user
+        return self.followed_user
 
     class Meta:
         # ensures we don't get multiple UserFollows instances

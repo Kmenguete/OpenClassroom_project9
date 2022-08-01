@@ -22,5 +22,10 @@ def search_users(request):
 
 
 @login_required
-def user_follows(request):
+def follow_user(request):
+    pass
+
+
+@login_required
+def unfollow_user(request):
     pass

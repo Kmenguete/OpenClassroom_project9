@@ -16,6 +16,7 @@
     </form>
     <form method="post" action="{% url 'follow_user' %}">
         {% csrf_token %}
+        <input type="hidden" name="user" value="" readonly/>
         <button id="search_button" type="submit">Send</button>
     </form>
     <script>

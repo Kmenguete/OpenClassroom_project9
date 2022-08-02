@@ -32,7 +32,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="followed_user" value="" readonly/>
                 <input type="hidden" name="value" value="unfollow" readonly/>
-                <a href="{% url 'unfollow_user' %}">Unfollow</a>
+                <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
               </form>
           </td>
         </tr>

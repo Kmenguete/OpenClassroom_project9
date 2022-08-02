@@ -22,3 +22,17 @@
 	position: relative;
 	left: 400px;
 }
+.unfollow_link {
+	position: relative;
+	color: rgb(50, 50, 50);
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	left: 690px;
+	top: -35px;
+}
+.unfollow_link:hover {
+	color: rgb(100, 100, 100);
+	cursor: pointer;
+	text-decoration: none;
+}

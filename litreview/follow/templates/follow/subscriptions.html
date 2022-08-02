@@ -20,6 +20,7 @@
         <input type="hidden" name="value" value="follow" readonly/>
         <button id="search_button" type="submit">Send</button>
     </form><br>
+    <div class="mb-3">
     <p class="subscriptions_management">Subscriptions</p>
     <table class="table table-striped">
       <tbody>
@@ -39,7 +40,9 @@
           </td>
         </tr>
       </tbody>
-    </table><br>
+    </table>
+    </div><br>
+    <div class="mb-3">
     <p class="subscriptions_management">Followers</p>
     <table class="table table-striped">
       <tbody>
@@ -49,6 +52,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <script>
         new Autocomplete('#autocomplete', {
             search: input =>{

@@ -25,9 +25,8 @@
     <table class="table table-striped">
       <tbody>
         <tr>
-          <th scope="row">1</th>
+          <th scope="row">A followed user</th>
           <td>
-              <p>A followed user</p>
               <form method="post" action="{% url 'unfollow_user' %}">
                 {% csrf_token %}
                 <input type="hidden" name="followed_user" value="" readonly/>
@@ -44,8 +43,7 @@
     <table class="table table-striped">
       <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>A follower</td>
+          <th scope="row">A follower</th>
         </tr>
       </tbody>
     </table>

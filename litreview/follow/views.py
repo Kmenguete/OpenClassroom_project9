@@ -39,18 +39,6 @@ def search_users(request):
 
 
 @login_required
-def follow_user(request):
-    if request.method == 'POST':
-        value = request.POST['value']
-        user = request.POST['user']
-        followed_user = request.POST['followed_user']
-        if value == 'follow':
-            followers_count = UserFollows.objects.create(user=user, followed_user=followed_user)
-            followers_count.save()
-        return redirect('follow_user/?user=' + user)
-
-
-@login_required
 def unfollow_user(request):
     if request.method == 'POST':
         value = request.POST['value']

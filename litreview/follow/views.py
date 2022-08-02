@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 from authentication.models import User
 
-from litreview.follow.models import UserFollows
+from .models import UserFollows
 
 
 @login_required

@@ -8,7 +8,7 @@ from .models import UserFollows
 
 
 @login_required
-def subscriptions(request):
+def follower(request):
     return render(request, 'follow/subscriptions.html')
 
 

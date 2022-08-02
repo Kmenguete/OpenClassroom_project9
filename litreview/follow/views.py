@@ -8,8 +8,13 @@ from .models import UserFollows
 
 
 @login_required
-def follower(request):
+def subscriptions(request):
     return render(request, 'follow/subscriptions.html')
+
+
+@login_required
+def follower(request):
+    pass
 
 
 @login_required

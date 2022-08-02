@@ -15,16 +15,16 @@ def subscriptions(request):
 
 @login_required
 def follower(request):
-    users = UserFollows.user
-    followed_users = UserFollows.followed_user
-    if search_users(request=request) is not None:
-        user = request.GET.get('user')
-        if user is not None:
-            user.save()
-        else:
-            messages.error(request, "The user you are looking for does not exist.")
-    context = {'users': users, 'followed_users': followed_users}
-    return render(request, 'follow/subscriptions.html', context=context)
+    if request.method == 'POST':
+        user = request.POST['user']
+        followed_user = request.POST['followed_user']
+        if search_users(request=request) is not None:
+            if user is not None:
+                user = UserFollows.objects.create(user=user, followed_user=followed_user)
+            else:
+                messages.error(request, "The user you are looking for does not exist.")
+        context = {'users': user, 'followed_users': followed_user}
+        return render(request, 'follow/subscriptions.html', context=context)
 
 
 @login_required

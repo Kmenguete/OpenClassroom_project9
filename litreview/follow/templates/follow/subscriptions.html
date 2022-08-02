@@ -26,11 +26,8 @@
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>A followed user</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
           <td>
+              <p>A followed user</p>
               <form method="post" action="{% url 'unfollow_user' %}">
                 {% csrf_token %}
                 <input type="hidden" name="followed_user" value="" readonly/>

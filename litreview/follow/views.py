@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -14,7 +15,12 @@ def subscriptions(request):
 
 @login_required
 def follower(request):
-    pass
+    if search_users(request=request) is not None:
+        user = request.GET.get('user')
+        if user is not None:
+            user.save()
+        else:
+            messages.error(request, "The user you are looking for does not exist.")
 
 
 @login_required

@@ -20,7 +20,8 @@
 }
 .subscriptions_management {
 	position: relative;
-	left: 400px;
+	left: 5px;
+	text-align: center;
 }
 .unfollow_link {
 	position: relative;

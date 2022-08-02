@@ -20,26 +20,29 @@
         <input type="hidden" name="value" value="follow" readonly/>
         <button id="search_button" type="submit">Send</button>
     </form><br>
+    {% for followed_user in followed_users %}
+        <div class="mb-3">
+        <p class="subscriptions_management">Subscriptions</p>
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th scope="row">{{ followed_user.username }}</th>
+              <td>
+                  <form method="post" action="{% url 'unfollow_user' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="followed_user" value="" readonly/>
+                    <input type="hidden" name="value" value="unfollow" readonly/>
+                    <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
+                  </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div><br>
+    {% endfor %}
+    {% for user in users %}
     <div class="mb-3">
-    <p class="subscriptions_management">Subscriptions</p>
-    <table class="table table-striped">
-      <tbody>
-        <tr>
-          <th scope="row">A followed user</th>
-          <td>
-              <form method="post" action="{% url 'unfollow_user' %}">
-                {% csrf_token %}
-                <input type="hidden" name="followed_user" value="" readonly/>
-                <input type="hidden" name="value" value="unfollow" readonly/>
-                <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
-              </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div><br>
-    <div class="mb-3">
-    <p class="subscriptions_management">Followers</p>
+    <p class="subscriptions_management">{{ user.username }}</p>
     <table class="table table-striped">
       <tbody>
         <tr>
@@ -48,6 +51,7 @@
       </tbody>
     </table>
     </div>
+    {% endfor %}
     <script>
         new Autocomplete('#autocomplete', {
             search: input =>{

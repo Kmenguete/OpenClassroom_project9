@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 
 from authentication.models import User
 
+from . import models
+
 
 @login_required
 def subscriptions(request):
@@ -12,8 +14,17 @@ def subscriptions(request):
 
 
 @login_required
-def follower(request):
-    pass
+def follower(request, id):
+    user_follower = models.UserFollows.user
+    followed_user = models.UserFollows.followed_user
+    if search_users is not None:
+        user = User.objects.get(id=id)
+        if user.username is not None:
+            user.save()
+        else:
+            messages.error(request, "The user you are looking for does not exist.")
+    context = {'user_follower': user_follower, 'followed_user': followed_user}
+    return render(request, 'follow/subscriptions.html', context=context)
 
 
 @login_required

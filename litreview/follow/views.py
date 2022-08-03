@@ -39,4 +39,4 @@ def search_users(request):
 
 
 def unfollow_user(request):
-    pass
+    return render(request, 'follow/subscriptions.html')

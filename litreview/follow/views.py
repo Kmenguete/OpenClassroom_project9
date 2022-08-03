@@ -5,8 +5,6 @@ from django.shortcuts import render, redirect
 
 from authentication.models import User
 
-from .models import UserFollows
-
 
 @login_required
 def subscriptions(request):

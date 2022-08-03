@@ -17,14 +17,16 @@ def subscriptions(request):
 def follower(request):
     user_follower = models.UserFollows.objects.filter().values('user')
     followed_user = models.UserFollows.objects.filter().values('followed_user')
-    if search_users is not None:
-        user_to_follow = search_users(request)
-        if user_to_follow.username is not None:
+    search_bar = search_users(request)
+    if search_bar is not None:
+        user_to_follow = ''
+        if user_to_follow is not None:
             user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user_to_follow)
             user_follows.save()
             return redirect('subscriptions')
         else:
             messages.error(request, "The user you are looking for does not exist.")
+
     context = {'user_follower': user_follower, 'followed_user': followed_user}
     return render(request, 'follow/subscriptions.html', context=context)
 

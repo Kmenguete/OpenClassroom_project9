@@ -17,6 +17,13 @@
     <form method="post" action="{% url 'follower' user.id %}">
         {% csrf_token %}
         <button id="search_button" type="submit">Send</button>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </form><br>
     <div class="mb-3">
         <p class="subscriptions_management">Subscriptions</p>

@@ -23,7 +23,7 @@
         <table class="table table-striped">
               <tbody>
                 <tr>
-                  <th scope="row">{{ followed_user }}</th>
+                  <th scope="row">{{ followed_user.username }}</th>
                   <td>
                       <form method="post">
                         {% csrf_token %}
@@ -39,7 +39,7 @@
         <table class="table table-striped">
           <tbody>
             <tr>
-              <th scope="row">{{ user_follower }}</th>
+              <th scope="row">{{ user_follower.username }}</th>
             </tr>
           </tbody>
         </table>

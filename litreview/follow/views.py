@@ -22,7 +22,7 @@ def follower(request, id):
         if user.username is not None:
             user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
             user_follows.save()
-            return redirect('follow/subscriptions.html')
+            return redirect('subscriptions')
         else:
             messages.error(request, "The user you are looking for does not exist.")
     context = {'user_follower': user_follower, 'followed_user': followed_user}

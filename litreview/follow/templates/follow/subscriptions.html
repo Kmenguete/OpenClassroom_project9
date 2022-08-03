@@ -14,37 +14,35 @@
         </div>
         </div>
     </form>
-    <form method="post" action="{% url 'follower' %}">
+    <form method="post" action="{% url 'follower' user.id %}">
         {% csrf_token %}
         <button id="search_button" type="submit">Send</button>
     </form><br>
     <div class="mb-3">
         <p class="subscriptions_management">Subscriptions</p>
         <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th scope="row">{{ followed_user }}</th>
+                  <td>
+                      <form method="post" action="{% url 'unfollow_user' followed_user.id %}">
+                        {% csrf_token %}
+                        <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
+                      </form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+    </div><br>
+    <div class="mb-3">
+        <p class="subscriptions_management">Followers</p>
+        <table class="table table-striped">
           <tbody>
             <tr>
-              <th scope="row">A followed user</th>
-              <td>
-                  <form method="post" action="{% url 'unfollow_user' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="followed_user" value="" readonly/>
-                    <input type="hidden" name="value" value="unfollow" readonly/>
-                    <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
-                  </form>
-              </td>
+              <th scope="row">{{ user_follower }}</th>
             </tr>
           </tbody>
         </table>
-        </div><br>
-    <div class="mb-3">
-    <p class="subscriptions_management">Followers</p>
-    <table class="table table-striped">
-      <tbody>
-        <tr>
-          <th scope="row">A follower</th>
-        </tr>
-      </tbody>
-    </table>
     </div>
     <script>
         new Autocomplete('#autocomplete', {

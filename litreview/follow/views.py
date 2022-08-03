@@ -20,7 +20,7 @@ def follower(request, id):
     if search_users is not None:
         user = User.objects.get(id=id)
         if user.username is not None:
-            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+            user_follows = models.UserFollows.objects.create(user=user_follower, followed_user=user)
             user_follows.save()
         else:
             messages.error(request, "The user you are looking for does not exist.")

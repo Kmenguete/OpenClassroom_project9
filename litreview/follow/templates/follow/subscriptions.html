@@ -25,7 +25,7 @@
                 <tr>
                   <th scope="row">{{ followed_user }}</th>
                   <td>
-                      <form method="post" action="{% url 'unfollow_user' followed_user.id %}">
+                      <form method="post">
                         {% csrf_token %}
                         <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
                       </form>

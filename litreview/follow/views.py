@@ -15,12 +15,13 @@ def subscriptions(request):
 
 @login_required
 def follower(request, id):
-    user_follower = models.UserFollows.user
-    followed_user = models.UserFollows.followed_user
+    user_follower = models.UserFollows.objects.filter().values('user')
+    followed_user = models.UserFollows.objects.filter().values('followed_user')
     if search_users is not None:
         user = User.objects.get(id=id)
         if user.username is not None:
-            user.save()
+            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+            user_follows.save()
         else:
             messages.error(request, "The user you are looking for does not exist.")
     context = {'user_follower': user_follower, 'followed_user': followed_user}

@@ -14,13 +14,13 @@ def subscriptions(request):
 
 
 @login_required
-def follower(request, id):
+def follower(request):
     user_follower = models.UserFollows.objects.filter().values('user')
     followed_user = models.UserFollows.objects.filter().values('followed_user')
     if search_users is not None:
-        user = User.objects.get(id=id)
-        if user.username is not None:
-            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+        user_to_follow = search_users(request)
+        if user_to_follow.username is not None:
+            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user_to_follow)
             user_follows.save()
             return redirect('subscriptions')
         else:

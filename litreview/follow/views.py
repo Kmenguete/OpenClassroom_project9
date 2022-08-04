@@ -19,12 +19,14 @@ def follower(request):
     followed_user = models.UserFollows.objects.filter().values('followed_user')
     search_bar = search_users(request)
     if search_bar is not None:
-        username = ''
-        user = User.objects.get(username=username)
+        username = request.POST.get('username')
         if username is not None:
-            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
-            user_follows.save()
-            return redirect('subscriptions')
+            users = User.objects.filter(username__icontains=username)
+            for user in users:
+                User.objects.get(username=username)
+                user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+                user_follows.save()
+                return redirect('subscriptions')
         else:
             messages.error(request, "The user you are looking for does not exist.")
 

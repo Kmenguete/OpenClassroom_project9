@@ -19,7 +19,7 @@ def follower(request):
     followed_user = models.UserFollows.objects.filter().values('followed_user')
     search_bar = search_users(request)
     if search_bar is not None:
-        username = request.POST['username']
+        username = request.POST.get('username')
         user_to_follow = User.objects.get(username=username)
         if user_to_follow is not None:
             user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user_to_follow)

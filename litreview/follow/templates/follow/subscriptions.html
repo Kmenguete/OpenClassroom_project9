@@ -14,7 +14,7 @@
         </div>
         </div>
     </form>
-    <form method="post" action="{% url 'follower' user.id %}">
+    <form method="post" action="{% url 'follower' %}">
         {% csrf_token %}
         <button id="search_button" type="submit">Send</button>
         {% if messages %}
@@ -31,7 +31,7 @@
             <table class="table table-striped">
                   <tbody>
                     <tr>
-                      <th scope="row">{{ followed_user.username }}</th>
+                      <th scope="row">{{ followed_user.followed_user.username }}</th>
                       <td>
                           <form method="post">
                             {% csrf_token %}
@@ -49,7 +49,7 @@
             <table class="table table-striped">
               <tbody>
                 <tr>
-                  <th scope="row">{{ user_follower.username }}</th>
+                  <th scope="row">{{ user_follower.user.username }}</th>
                 </tr>
               </tbody>
             </table>

@@ -19,9 +19,9 @@ def follower(request, username):
     followed_user = models.UserFollows.objects.filter().values('followed_user')
     search_bar = search_users(request)
     if search_bar is not None:
-        user_object = User.objects.get(username=username)
+        user = User.objects.get(username=username)
         if username is not None:
-            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user_object)
+            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
             user_follows.save()
             return redirect('subscriptions')
         else:

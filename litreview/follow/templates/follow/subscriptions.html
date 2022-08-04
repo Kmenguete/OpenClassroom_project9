@@ -16,7 +16,8 @@
     </form>
     <form method="post" action="{% url 'follower' %}">
         {% csrf_token %}
-        <button id="search_button" name="username" type="submit">Send</button>
+        <input type="hidden" name="username" value="{{ followed_user.followed_user.username }}" readonly/>
+        <button id="search_button" type="submit">Send</button>
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}

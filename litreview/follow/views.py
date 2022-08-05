@@ -17,24 +17,23 @@ def subscriptions(request):
 def follower(request):
     user_follower = models.UserFollows.objects.filter().values('user')
     followed_user = models.UserFollows.objects.filter().values('followed_user')
-    search_bar = search_users(request)
-    if search_bar is not None:
-        username = request.POST.get('username')
-        if username is not None:
-            users = User.objects.filter(username__icontains=username)
-            for user in users:
-                User.objects.get(username=username)
-                user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
-                user_follows.save()
-                return redirect('subscriptions')
-        else:
-            messages.error(request, "The user you are looking for does not exist.")
+    # search_bar = search_users(request)
+    username = request.POST.get('username')
+    if username is not None:
+        users = User.objects.filter(username__icontains=username)
+        for user in users:
+            User.objects.get(username=username)
+            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+            user_follows.save()
+            return redirect('subscriptions')
+    else:
+        messages.error(request, "The user you are looking for does not exist.")
 
     context = {'user_follower': user_follower, 'followed_user': followed_user}
     return render(request, 'follow/subscriptions.html', context=context)
 
 
-@login_required
+"""@login_required
 def search_users(request):
     username = request.GET.get('username')
     payload = []
@@ -42,7 +41,7 @@ def search_users(request):
         users = User.objects.filter(username__icontains=username)
         for user in users:
             payload.append(user.username)
-    return JsonResponse({'status': 200, 'data': payload})
+    return JsonResponse({'status': 200, 'data': payload})"""
 
 
 def unfollow_user(request):

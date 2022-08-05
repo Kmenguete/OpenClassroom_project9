@@ -42,18 +42,20 @@
                     </table>
             </div><br>
     {% endif %}
-    <!-- {% if user_follower %}
+    {% if followers %}
         <div class="mb-3">
             <p class="subscriptions_management">Followers</p>
             <table class="table table-striped">
               <tbody>
+              {% for follower in followers %}
                 <tr>
-                  <th scope="row">{{ user_follower.user.username }}</th>
+                  <th scope="row">{{ follower.user.username }}</th>
                 </tr>
+              {% endfor %}
               </tbody>
             </table>
         </div>
-    {% endif %} -->
+    {% endif %}
     <script>
         new Autocomplete('#autocomplete', {
             search: input =>{

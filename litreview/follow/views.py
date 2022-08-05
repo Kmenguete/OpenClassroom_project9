@@ -42,5 +42,10 @@ def search_users(request):
     return JsonResponse({'status': 200, 'data': payload})"""
 
 
-def unfollow_user(request):
-    return render(request, 'follow/subscriptions.html')
+def unfollow_user(request, id):
+    followed_user = User.objects.get(id=id)
+    user_follows = models.UserFollows.objects.get(followed_user=followed_user)
+    if request.method == 'POST':
+        user_follows.delete()
+        return redirect('subscriptions')
+    return render(request, 'follow/subscriptions.html', context={'user_follows': user_follows})

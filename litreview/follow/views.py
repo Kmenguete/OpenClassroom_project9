@@ -15,8 +15,7 @@ def subscriptions(request):
 
 @login_required
 def follower(request):
-    # user_follower = models.UserFollows.objects.filter().values('user')
-    # followed_user = models.UserFollows.objects.filter().values('followed_user')
+    user_follows = models.UserFollows.objects.get(user=request.user)
     # search_bar = search_users(request)
     if request.method == 'POST':
         username = request.POST['username']
@@ -27,10 +26,9 @@ def follower(request):
             return redirect('subscriptions')
         else:
             messages.error(request, "The user you are looking for does not exist.")
-        return render(request, 'follow/subscriptions.html', context={'username': username})
-    else:
         return render(request, 'follow/subscriptions.html')
-    # context = {'user_follower': user_follower, 'followed_user': followed_user}
+    context = {'user_follows': user_follows}
+    return render(request, 'follow/subscriptions.html', context=context)
 
 
 """@login_required

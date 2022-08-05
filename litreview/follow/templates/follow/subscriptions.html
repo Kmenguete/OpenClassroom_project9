@@ -31,7 +31,7 @@
                         <tr>
                           <th scope="row">{{ follow.followed_user.username }}</th>
                           <td>
-                              <form method="post">
+                              <form method="get">
                                 {% csrf_token %}
                                 <a class="unfollow_link" href="{% url 'unfollow_user' follow.followed_user.id %}">Unfollow</a>
                               </form>

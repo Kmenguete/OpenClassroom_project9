@@ -22,13 +22,13 @@
             </ul>
         {% endif %}
     </form><br>
-    {% if user_follows %}
+    {% for user_follow in user_follows %}
         <div class="mb-3">
             <p class="subscriptions_management">Subscriptions</p>
             <table class="table table-striped">
                   <tbody>
                     <tr>
-                      <th scope="row">{{ user_follows.followed_user.username }}</th>
+                      <th scope="row">{{ user_follow.followed_user.username }}</th>
                       <td>
                           <form method="post">
                             {% csrf_token %}
@@ -39,7 +39,7 @@
                   </tbody>
                 </table>
         </div><br>
-    {% endif %}
+    {% endfor %}
     {% if user_follower %}
         <div class="mb-3">
             <p class="subscriptions_management">Followers</p>

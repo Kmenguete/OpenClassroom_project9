@@ -33,7 +33,7 @@
                           <td>
                               <form method="post">
                                 {% csrf_token %}
-                                <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
+                                <a class="unfollow_link" href="{% url 'unfollow_user' follow.followed_user.id %}">Unfollow</a>
                               </form>
                           </td>
                         </tr>

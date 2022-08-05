@@ -50,7 +50,7 @@ urlpatterns = [
     path('subscriptions/', follow.views.subscriptions, name='subscriptions'),
     # path('search/', follow.views.search_users, name='search_users'),
     path('follower/', follow.views.follower, name='follower'),
-    path('unfollow_user/', follow.views.unfollow_user, name='unfollow_user'),
+    path('unfollow_user/<int:id>/', follow.views.unfollow_user, name='unfollow_user'),
 ]
 if settings.DEBUG:
     urlpatterns += static(

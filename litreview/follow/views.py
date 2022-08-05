@@ -46,7 +46,7 @@ def unfollow_user(request, id):
     user = request.user
     followed_user = User.objects.get(id=id)
     user_follows = models.UserFollows.objects.get(user=user, followed_user=followed_user)
-    if request.method == 'POST':
+    if request.method == 'GET':
         user_follows.delete()
         return redirect('subscriptions')
     return render(request, 'follow/subscriptions.html', context={'user_follows': user_follows})

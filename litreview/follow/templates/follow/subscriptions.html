@@ -23,11 +23,11 @@
         {% endif %}
     </form><br>
     {% if follows %}
-        {% for follow in follows %}
-            <div class="mb-3">
+        <div class="mb-3">
                 <p class="subscriptions_management">Subscriptions</p>
                 <table class="table table-striped">
                       <tbody>
+                      {% for follow in follows %}
                         <tr>
                           <th scope="row">{{ follow.followed_user.username }}</th>
                           <td>
@@ -37,10 +37,10 @@
                               </form>
                           </td>
                         </tr>
+                      {% endfor %}
                       </tbody>
                     </table>
             </div><br>
-        {% endfor %}
     {% endif %}
     <!-- {% if user_follower %}
         <div class="mb-3">

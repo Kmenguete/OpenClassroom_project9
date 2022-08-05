@@ -31,7 +31,7 @@ def follower(request):
     return render(request, 'follow/subscriptions.html')
 
 
-"""@login_required
+@login_required
 def search_users(request):
     username = request.GET.get('username')
     payload = []
@@ -39,7 +39,7 @@ def search_users(request):
         users = User.objects.filter(username__icontains=username)
         for user in users:
             payload.append(user.username)
-    return JsonResponse({'status': 200, 'data': payload})"""
+    return JsonResponse({'status': 200, 'data': payload})
 
 
 def unfollow_user(request, id):

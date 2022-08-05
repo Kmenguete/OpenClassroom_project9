@@ -11,7 +11,7 @@ from . import models
 @login_required
 def subscriptions(request):
     follows = models.UserFollows.objects.filter(user=request.user)
-    followers = models.UserFollows.objects.filter(followed_user__contains=request.user)
+    followers = models.UserFollows.objects.filter(followed_user__username__contains=request.user.username)
     return render(request, 'follow/subscriptions.html', context={'follows': follows, 'followers': followers})
 
 

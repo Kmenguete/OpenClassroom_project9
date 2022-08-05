@@ -43,8 +43,7 @@ def search_users(request):
 
 
 def unfollow_user(request, id):
-    followed_user = User.objects.get(id=id)
-    user_follows = models.UserFollows.objects.get(followed_user=followed_user)
+    user_follows = models.UserFollows.objects.get(id=id)
     if request.method == 'POST':
         user_follows.delete()
         return redirect('subscriptions')

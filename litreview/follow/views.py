@@ -15,7 +15,7 @@ def subscriptions(request):
 
 @login_required
 def follower(request):
-    user_follows = models.UserFollows.objects.get(user=request.user)
+    user_follows = models.UserFollows.objects.filter(user=request.user)
     # search_bar = search_users(request)
     if request.method == 'POST':
         username = request.POST['username']

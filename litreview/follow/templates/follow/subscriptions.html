@@ -22,25 +22,27 @@
             </ul>
         {% endif %}
     </form><br>
-    {% for user_follow in user_follows %}
-        <div class="mb-3">
-            <p class="subscriptions_management">Subscriptions</p>
-            <table class="table table-striped">
-                  <tbody>
-                    <tr>
-                      <th scope="row">{{ user_follow.followed_user.username }}</th>
-                      <td>
-                          <form method="post">
-                            {% csrf_token %}
-                            <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
-                          </form>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-        </div><br>
-    {% endfor %}
-    {% if user_follower %}
+    {% if follows %}
+        {% for follow in follows %}
+            <div class="mb-3">
+                <p class="subscriptions_management">Subscriptions</p>
+                <table class="table table-striped">
+                      <tbody>
+                        <tr>
+                          <th scope="row">{{ follow.followed_user.username }}</th>
+                          <td>
+                              <form method="post">
+                                {% csrf_token %}
+                                <a class="unfollow_link" href="{% url 'unfollow_user' %}">Unfollow</a>
+                              </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+            </div><br>
+        {% endfor %}
+    {% endif %}
+    <!-- {% if user_follower %}
         <div class="mb-3">
             <p class="subscriptions_management">Followers</p>
             <table class="table table-striped">
@@ -51,7 +53,7 @@
               </tbody>
             </table>
         </div>
-    {% endif %}
+    {% endif %} -->
     <script>
         new Autocomplete('#autocomplete', {
             search: input =>{

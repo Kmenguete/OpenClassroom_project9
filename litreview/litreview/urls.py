@@ -48,7 +48,7 @@ urlpatterns = [
     path('create_review/<int:id>/', reviews.views.create_review, name='create_review'),
     path('create_new_review/', reviews.views.create_new_review, name='create_new_review'),
     path('subscriptions/', follow.views.subscriptions, name='subscriptions'),
-    # path('search/', follow.views.search_users, name='search_users'),
+    path('search/', follow.views.search_users, name='search_users'),
     path('follower/', follow.views.follower, name='follower'),
     path('unfollow_user/<int:id>/', follow.views.unfollow_user, name='unfollow_user'),
 ]

@@ -27,7 +27,7 @@ def follower(request):
             return redirect('subscriptions')
         else:
             messages.error(request, "The user you are looking for does not exist.")
-        return render(request, 'follow/subscriptions.html', {'username': username})
+        return render(request, 'follow/subscriptions.html', context={'username': username})
     else:
         return render(request, 'follow/subscriptions.html')
     # context = {'user_follower': user_follower, 'followed_user': followed_user}

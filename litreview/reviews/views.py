@@ -6,6 +6,7 @@ from . import models
 from .forms import AskReviewForm, CreateNewReviewForm
 from .models import Ticket
 from itertools import chain
+from follow.models import UserFollows
 
 
 @login_required
@@ -16,6 +17,10 @@ def home(request):
     tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
     return render(request, 'reviews/home.html', context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
                                                          'real_tickets': real_tickets})
+
+
+def get_tickets_and_reviews_from_followed_users(request):
+    subscriptions = UserFollows.objects.filter(user=request.user)
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

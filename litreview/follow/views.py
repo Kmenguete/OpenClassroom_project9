@@ -21,13 +21,14 @@ def follower(request):
     if request.method == 'POST':
         username = request.POST['username']
         if username is not None:
-            user = User.objects.get(username=username)
-            user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
-            user_follows.save()
-            return redirect('subscriptions')
-        else:
-            messages.error(request, "The user you are looking for does not exist.")
-            return redirect('subscriptions')
+            try:
+                user = User.objects.get(username=username)
+                user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+                user_follows.save()
+                return redirect('subscriptions')
+            except User.DoesNotExist:
+                messages.error(request, "The user you are looking for does not exist.")
+                return redirect('subscriptions')
     return render(request, 'follow/subscriptions.html')
 
 

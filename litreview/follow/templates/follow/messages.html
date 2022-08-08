@@ -2,7 +2,9 @@
     {% for message in messages %}
     <div class="container-fluid p-0">
         <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-            <button type="button" class="btn-close" aria-label="Close"></button>
+            <form action="{% url 'subscriptions' %}">
+            <button type="submit" class="btn-close" aria-label="Close"></button>
+            </form>
             {{ message }}
         </div>
     </div>

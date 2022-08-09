@@ -7,7 +7,6 @@ from .forms import AskReviewForm, CreateNewReviewForm
 from .models import Ticket
 from itertools import chain
 from follow.models import UserFollows
-from authentication.models import User
 
 
 @login_required

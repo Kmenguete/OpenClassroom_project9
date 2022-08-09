@@ -21,13 +21,6 @@ def home(request):
                                                          'real_tickets': real_tickets})
 
 
-def get_followed_users(subscriptions):
-    user_follows = [subscriptions]
-    for user_follow in user_follows:
-        followed_users = UserFollows.objects.get(followed_user__in=user_follow)
-        return followed_users
-
-
 def get_posts_of_logged_in_user(request):
     reviews = models.Review.objects.filter(user=request.user)
     ticket_of_reviews = models.Review.objects.filter(user=request.user).values('ticket')

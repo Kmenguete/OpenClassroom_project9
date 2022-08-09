@@ -20,9 +20,11 @@ def home(request):
                                                          'real_tickets': real_tickets})
 
 
-def get_tickets_and_reviews_from_followed_users(request):
+def get_followed_users(request):
     subscriptions = UserFollows.objects.filter(user=request.user)
-    return subscriptions
+    for subscription in subscriptions:
+        subscription = UserFollows.objects.get(followed_user=subscription.followed_user)
+        return subscription
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

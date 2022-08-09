@@ -12,10 +12,13 @@ from follow.models import UserFollows
 @login_required
 def home(request):
     subscriptions = UserFollows.objects.filter(user=request.user)
-    reviews = models.Review.objects.all()
+    """reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
-    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
+    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)"""
+    tickets_and_reviews_of_user = get_posts_of_logged_in_user(request)
+    tickets_and_reviews_of_followed_user = get_posts_of_followed_users(subscriptions)
+    tickets_and_reviews = sorted(chain(tickets_and_reviews_of_user, tickets_and_reviews_of_followed_user),
+                                 key=lambda instance: instance.time_created, reverse=True)
     return render(request, 'reviews/home.html', context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
                                                          'real_tickets': real_tickets})
 
@@ -30,6 +33,14 @@ def get_posts_of_followed_users(subscriptions):
         tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created,
                                      reverse=True)
         return tickets_and_reviews
+
+
+def get_posts_of_logged_in_user(request):
+    reviews = models.Review.objects.filter(user=request.user)
+    ticket_of_reviews = models.Review.objects.filter(user=request.user).values('ticket')
+    real_tickets = exclude_users_tickets_of_reviews(request, ticket_of_reviews)
+    tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
+    return tickets_and_reviews
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

@@ -11,11 +11,19 @@ from follow.models import UserFollows
 
 @login_required
 def home(request):
-    subscriptions = UserFollows.objects.filter(user=request.user)
-    reviews = models.Review.objects.all()
-    ticket_of_reviews = models.Review.objects.filter().values('ticket')
-    real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
-    tickets_and_reviews = sorted(chain(reviews, real_tickets),
+    followed_user = UserFollows.objects.filter(user=request.user).values('followed_user')
+    reviews_of_followed_user = models.Review.objects.filter(user__in=followed_user)
+    ticket_of_reviews_of_followed_user = models.Review.objects.filter(user__in=followed_user).values('ticket')
+    real_tickets_of_followed_user = exclude_tickets_of_reviews(ticket_of_reviews_of_followed_user)
+    tickets_and_reviews_of_followed_user = sorted(chain(reviews_of_followed_user, real_tickets_of_followed_user),
+                                                  key=lambda instance: instance.time_created, reverse=True)
+    reviews_of_user = models.Review.objects.filter(user=request.user)
+    tickets_and_reviews_of_user = get_posts_of_logged_in_user(request)
+    reviews = list(chain(reviews_of_followed_user, reviews_of_user))
+    ticket_of_reviews = models.Review.objects.filter(user=request.user).values('ticket')
+    real_tickets_of_user = exclude_users_tickets_of_reviews(request, ticket_of_reviews)
+    real_tickets = list(chain(real_tickets_of_followed_user, real_tickets_of_user))
+    tickets_and_reviews = sorted(chain(tickets_and_reviews_of_user, tickets_and_reviews_of_followed_user),
                                  key=lambda instance: instance.time_created, reverse=True)
     return render(request, 'reviews/home.html', context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
                                                          'real_tickets': real_tickets})

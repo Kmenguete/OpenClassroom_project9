@@ -14,9 +14,9 @@ def home(request):
     followed_user = UserFollows.objects.filter(user=request.user).values('followed_user')
     reviews_of_followed_user = models.Review.objects.filter(user__in=followed_user)
     ticket_of_reviews_of_followed_user = models.Review.objects.filter(user__in=followed_user).values('ticket')
-    real_tickets_of_followed_user = exclude_tickets_of_reviews(ticket_of_reviews_of_followed_user)
-    tickets_and_reviews_of_followed_user = sorted(chain(reviews_of_followed_user, real_tickets_of_followed_user),
-                                                  key=lambda instance: instance.time_created, reverse=True)
+    real_tickets_of_followed_user = exclude_followed_users_tickets_of_reviews(followed_user,
+                                                                              ticket_of_reviews_of_followed_user)
+    tickets_and_reviews_of_followed_user = list(chain(reviews_of_followed_user, real_tickets_of_followed_user))
     reviews_of_user = models.Review.objects.filter(user=request.user)
     tickets_and_reviews_of_user = get_posts_of_logged_in_user(request)
     reviews = list(chain(reviews_of_followed_user, reviews_of_user))
@@ -65,7 +65,7 @@ def exclude_users_tickets_of_reviews(request, ticket_of_reviews):
 def exclude_followed_users_tickets_of_reviews(followed_user, ticket_of_reviews):
     tickets_to_excludes = [ticket_of_reviews]
     for ticket in tickets_to_excludes:
-        tickets = models.Ticket.objects.filter(user=followed_user).exclude(id__in=ticket)
+        tickets = models.Ticket.objects.filter(user__in=followed_user).exclude(id__in=ticket)
         return tickets
 
 

@@ -11,6 +11,7 @@ from follow.models import UserFollows
 
 @login_required
 def home(request):
+    subscriptions = UserFollows.objects.filter(user=request.user)
     reviews = models.Review.objects.all()
     ticket_of_reviews = models.Review.objects.filter().values('ticket')
     real_tickets = exclude_tickets_of_reviews(ticket_of_reviews)
@@ -19,11 +20,16 @@ def home(request):
                                                          'real_tickets': real_tickets})
 
 
-def get_followed_users(request):
-    subscriptions = UserFollows.objects.filter(user=request.user)
-    for subscription in subscriptions:
-        subscription = UserFollows.objects.get(followed_user=subscription.followed_user)
-        return subscription
+def get_posts_of_followed_users(subscriptions):
+    user_follows = [subscriptions]
+    for user_follow in user_follows:
+        followed_user = user_follow.followed_user
+        reviews = models.Review.objects.filter(user=followed_user)
+        ticket_of_reviews = models.Review.objects.filter(user=followed_user).values('ticket')
+        real_tickets = exclude_followed_users_tickets_of_reviews(followed_user, ticket_of_reviews)
+        tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created,
+                                     reverse=True)
+        return tickets_and_reviews
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

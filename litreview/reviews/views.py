@@ -21,21 +21,8 @@ def home(request):
 
 
 def get_tickets_and_reviews_from_followed_users(request):
-    subscription = UserFollows.objects.get(user=request.user)
-    reviews_of_followed_user = models.Review.objects.filter(user=subscription.followed_user)
-    ticket_of_reviews_of_followed_user = models.Review.objects.filter(user=subscription.followed_user).values(
-        'ticket')
-    real_tickets_of_followed_user = exclude_followed_users_tickets_of_reviews(subscription.followed_user,
-                                                                              ticket_of_reviews_of_followed_user)
-    reviews_of_user = models.Review.objects.filter(user=request.user)
-    ticket_of_reviews_of_user = models.Review.objects.filter(user=request.user).values(
-        'ticket')
-    real_tickets_of_user = exclude_users_tickets_of_reviews(request,
-                                                            ticket_of_reviews_of_user)
-    reviews = list(chain(reviews_of_followed_user, reviews_of_user))
-    real_tickets = list(chain(real_tickets_of_followed_user, real_tickets_of_user))
-    tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
-    return tickets_and_reviews
+    subscriptions = UserFollows.objects.filter(user=request.user)
+    return subscriptions
 
 
 def exclude_tickets_of_reviews(ticket_of_reviews):

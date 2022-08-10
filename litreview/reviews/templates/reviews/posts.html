@@ -77,6 +77,9 @@
             </div><br>
             <form action="{% url 'create_review' item.id %}">
             <button id="create_a_review" type="submit">Create a review</button>
+            </form><br>
+            <form action="{% url 'update_ticket' item.id %}">
+            <button id="update_a_ticket" type="submit">Update ticket</button>
             </form>
         {% endif %}
      {% endfor %}

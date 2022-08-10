@@ -129,7 +129,11 @@ def create_new_review(request: WSGIRequest):
 @login_required
 def update_ticket(request, id):
     ticket = Ticket.objects.get(id=id)
-    ask_review_form = forms.AskReviewForm(instance=ticket)
-    context = {'ask_review_form': ask_review_form}
+    if request.method == 'POST':
+        ask_review_form = forms.AskReviewForm(request.POST, files=request.FILES, instance=ticket)
+        if ask_review_form.is_valid():
+            ask_review_form.save()
+            return redirect('posts')
+    context = {'ticket': ticket}
     return render(request, 'reviews/update_ticket.html', context=context)
 

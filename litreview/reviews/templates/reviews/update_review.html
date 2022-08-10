@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+    <p id="response_to_a_ticket">You are posting a review in response to</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <p>{{ review.ticket.title }}</p><br>
+            <p>{{ review.ticket.description }}</p><br>
+             <div>
+            {% if review.ticket.image %}
+                <img class="book_image" src="{{ review.ticket.image.url }}">
+            {% endif %}
+             </div><br>
+            <p>ticket created on {{ review.ticket.time_created }} by {{ review.ticket.user }}</p>
+        </div><br>
+        <div class="mb-3">
+          <label for="exampleFormControlInput3" class="form-label">Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput3" name="headline" value="{{ review.headline }}">
+        </div><br>
+        <div class="rate" id="rating_system">
+        <div class="form-check form-check-inline">
+            {% if review.rating == 0 %}
+              <input class="form-check-input" type="radio" name="rating" value="0" checked="checked"/>
+            {% else %}
+                <input class="form-check-input" type="radio" name="rating" id="0" value="0">
+            {% endif %}
+          <label class="form-check-label" for="0">0</label>
+        </div>
+        <div class="form-check form-check-inline">
+          {% if review.rating == 1 %}
+              <input class="form-check-input" type="radio" name="rating" value="1" checked="checked"/>
+          {% else %}
+              <input class="form-check-input" type="radio" name="rating" id="1" value="1">
+          {% endif %}
+          <label class="form-check-label" for="1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          {% if review.rating == 2 %}
+              <input class="form-check-input" type="radio" name="rating" value="2" checked="checked"/>
+          {% else %}
+              <input class="form-check-input" type="radio" name="rating" id="2" value="2">
+          {% endif %}
+          <label class="form-check-label" for="2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          {% if review.rating == 3 %}
+              <input class="form-check-input" type="radio" name="rating" value="3" checked="checked"/>
+          {% else %}
+              <input class="form-check-input" type="radio" name="rating" id="3" value="3">
+          {% endif %}
+          <label class="form-check-label" for="3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          {% if review.rating == 4 %}
+              <input class="form-check-input" type="radio" name="rating" value="4" checked="checked"/>
+          {% else %}
+              <input class="form-check-input" type="radio" name="rating" id="4" value="4">
+          {% endif %}
+          <label class="form-check-label" for="4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          {% if review.rating == 5 %}
+              <input class="form-check-input" type="radio" name="rating" value="5" checked="checked"/>
+          {% else %}
+              <input class="form-check-input" type="radio" name="rating" id="5" value="5">
+          {% endif %}
+          <label class="form-check-label" for="5">5</label>
+        </div>
+        </div><br>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
+          <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3">{{ review.body }}</textarea>
+        </div><br>
+        <form action="{% url 'posts' %}">
+             <button id="create_ticket" type="submit">Send</button>
+         </form><br>
+    </form>
+    <div class="back_to_home_page">
+    <a href="{% url 'home' %}">Back to home page</a>
+    </div>
+{% endblock content %}

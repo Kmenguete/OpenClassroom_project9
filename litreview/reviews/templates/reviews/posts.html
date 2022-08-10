@@ -63,6 +63,9 @@
                     <p>{{ item.headline }}</p><br>
                     <p>{{ item.body }}</p><br>
                     <p>review created on {{ item.time_created }} by {{ item.user }}</p>
+                    <form action="{% url 'update_review' item.id %}">
+                        <button id="update_a_review" type="submit">Update review</button>
+                    </form>
              </div><br>
         {% elif item in real_tickets %}
             <div class="flux_item">

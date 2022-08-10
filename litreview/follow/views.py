@@ -24,9 +24,14 @@ def follower(request):
         if username is not None:
             try:
                 user = User.objects.get(username=username)
-                user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
-                user_follows.save()
-                return redirect('subscriptions')
+                if user == request.user:
+                    messages.error(request, "You cannot follow yourself.")
+                    return redirect('subscriptions')
+                else:
+                    user_follows = models.UserFollows.objects.create(user=request.user, followed_user=user)
+                    user_follows.save()
+                    messages.success(request, "You follow " + str(username) + ".")
+                    return redirect('subscriptions')
             except User.DoesNotExist:
                 messages.error(request, "The user you are looking for does not exist.")
                 return redirect('subscriptions')

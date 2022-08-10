@@ -42,7 +42,7 @@ urlpatterns = [
          ),
     path('home/', reviews.views.home, name='home'),
     path('posts/', reviews.views.posts, name='posts'),
-    # path('update_review/<int:id>/', reviews.views.update_review, name='update_review'),
+    path('update_review/<int:id>/', reviews.views.update_review, name='update_review'),
     path('update_ticket/<int:id>/', reviews.views.update_ticket, name='update_ticket'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('delete_account/<int:id>/delete/', authentication.views.user_delete, name='delete_account'),

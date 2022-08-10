@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import utils
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
@@ -28,6 +29,9 @@ def follower(request):
                 return redirect('subscriptions')
             except User.DoesNotExist:
                 messages.error(request, "The user you are looking for does not exist.")
+                return redirect('subscriptions')
+            except utils.IntegrityError:
+                messages.error(request, "You already follow " + str(username) + ".")
                 return redirect('subscriptions')
     return render(request, 'follow/subscriptions.html')
 

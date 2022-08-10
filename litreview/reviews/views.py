@@ -56,8 +56,13 @@ def posts(request):
     ticket_of_reviews = models.Review.objects.filter(user=request.user).values('ticket')
     real_tickets = exclude_users_tickets_of_reviews(request, ticket_of_reviews)
     tickets_and_reviews = sorted(chain(reviews, real_tickets), key=lambda instance: instance.time_created, reverse=True)
+
+    paginator = Paginator(tickets_and_reviews, 8)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+
     return render(request, 'reviews/posts.html',
-                  context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
+                  context={'page_object': page_object, 'reviews': reviews,
                            'real_tickets': real_tickets})
 
 
@@ -126,8 +131,10 @@ def create_new_review(request: WSGIRequest):
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
             review.save()
-
             return redirect('home')
+        else:
+            print(form_ask.errors)
+            print(form_create.errors)
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})
 

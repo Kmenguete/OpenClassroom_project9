@@ -137,3 +137,14 @@ def update_ticket(request, id):
     context = {'ticket': ticket}
     return render(request, 'reviews/update_ticket.html', context=context)
 
+
+@login_required
+def update_review(request, id):
+    review = models.Review.objects.get(id=id)
+    if request.method == 'POST':
+        create_review_form = forms.CreateReviewForm(request.POST, instance=review)
+        if create_review_form.is_valid():
+            create_review_form.save()
+            return redirect('posts')
+    context = {'review': review}
+    return render(request, 'reviews/update_review.html', context=context)

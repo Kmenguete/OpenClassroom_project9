@@ -124,3 +124,12 @@ def create_new_review(request: WSGIRequest):
             return redirect('home')
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})
+
+
+@login_required
+def update_ticket(request, id):
+    ticket = Ticket.objects.get(id=id)
+    ask_review_form = forms.AskReviewForm(instance=ticket)
+    context = {'ask_review_form': ask_review_form}
+    return render(request, 'reviews/update_ticket.html', context=context)
+

@@ -7,6 +7,7 @@ from .forms import AskReviewForm, CreateNewReviewForm
 from .models import Ticket
 from itertools import chain
 from follow.models import UserFollows
+from django.core.paginator import Paginator
 
 
 @login_required
@@ -25,7 +26,12 @@ def home(request):
     real_tickets = list(chain(real_tickets_of_followed_user, real_tickets_of_user))
     tickets_and_reviews = sorted(chain(tickets_and_reviews_of_user, tickets_and_reviews_of_followed_user),
                                  key=lambda instance: instance.time_created, reverse=True)
-    return render(request, 'reviews/home.html', context={'tickets_and_reviews': tickets_and_reviews, 'reviews': reviews,
+
+    paginator = Paginator(tickets_and_reviews, 8)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+
+    return render(request, 'reviews/home.html', context={'page_object': page_object, 'reviews': reviews,
                                                          'real_tickets': real_tickets})
 
 

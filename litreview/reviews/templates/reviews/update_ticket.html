@@ -20,6 +20,18 @@
          <button id="create_ticket" type="submit">Send</button>
      </form>
     </form><br>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <form action="{% url 'update_ticket' ticket.id %}">
+            <button type="submit" class="btn-close" aria-label="Close"></button>
+            </form>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>
     </div>

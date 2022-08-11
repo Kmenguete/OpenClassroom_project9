@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.conf import settings
 from authentication.models import User
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView, LogoutView
 
 from . import forms
@@ -32,7 +31,7 @@ def user_delete(request, id):
     return render(request, 'authentication/user_delete.html', {'user': user})
 
 
-class MyLoginView(SuccessMessageMixin, LoginView):
+class MyLoginView(LoginView):
     template_name = 'authentication/login.html'
 
     def form_valid(self, form):
@@ -45,8 +44,7 @@ class MyLoginView(SuccessMessageMixin, LoginView):
         return super().form_invalid(self)
 
 
-class MyLogoutView(SuccessMessageMixin, LogoutView):
+class MyLogoutView(LogoutView):
 
-    def form_valid(self, form):
-        messages.success(self.request, 'You successfully logged out.')
-        return super().form_valid(form)
+    def form_valid(self):
+        return messages.success(self.request, 'You successfully logged out.')

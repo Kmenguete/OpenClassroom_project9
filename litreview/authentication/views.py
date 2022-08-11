@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.conf import settings
@@ -13,7 +14,11 @@ def signup_page(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, "You have successfully signed up!")
             return redirect(settings.LOGIN_REDIRECT_URL)
+        else:
+            messages.error(request, "The sign up form is incomplete.")
+            return redirect('signup')
     return render(request, 'authentication/signup.html', context={'form': form})
 
 

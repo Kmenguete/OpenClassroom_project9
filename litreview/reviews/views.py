@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -89,7 +90,11 @@ def ask_review(request):
             ticket = ask_review_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
+            messages.success(request, "The ticket has been submitted successfully.")
             return redirect('home')
+        else:
+            messages.error(request, "The ticket is not valid.")
+            return redirect('ask_review')
     context = {'ask_review_form': ask_review_form}
     return render(request, 'reviews/ask_review.html', context=context)
 
@@ -106,10 +111,11 @@ def create_review(request, id):
             review.user = request.user
             review.ticket = ticket
             review.save()
+            messages.success(request, "The review has been created successfully.")
             return redirect('home')
         else:
-            print(create_review_form.errors)
-
+            messages.error(request, "The review is not valid.")
+            return redirect('create_review')
     context = {'create_review_form': create_review_form, 'ticket': ticket}
     return render(request, 'reviews/create_review.html', context=context)
 
@@ -131,10 +137,11 @@ def create_new_review(request: WSGIRequest):
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
             review.save()
+            messages.success(request, "The review has been created successfully.")
             return redirect('home')
         else:
-            print(form_ask.errors)
-            print(form_create.errors)
+            messages.error(request, "The review is not valid.")
+            return redirect('create_new_review')
 
     return render(request, 'reviews/create_new_review.html', context={'create_new_review_form': create_new_review_form})
 
@@ -146,7 +153,11 @@ def update_ticket(request, id):
         ask_review_form = forms.AskReviewForm(request.POST, files=request.FILES, instance=ticket)
         if ask_review_form.is_valid():
             ask_review_form.save()
+            messages.success(request, "The ticket has been successfully updated.")
             return redirect('posts')
+        else:
+            messages.error(request, "The ticket is not valid.")
+            return redirect('update_ticket', ticket.id)
     context = {'ticket': ticket}
     return render(request, 'reviews/update_ticket.html', context=context)
 
@@ -158,6 +169,10 @@ def update_review(request, id):
         create_review_form = forms.CreateReviewForm(request.POST, instance=review)
         if create_review_form.is_valid():
             create_review_form.save()
+            messages.success(request, "The review has been successfully updated.")
             return redirect('posts')
+        else:
+            messages.error(request, "The review is not valid.")
+            return redirect('update_review', review.id)
     context = {'review': review}
     return render(request, 'reviews/update_review.html', context=context)

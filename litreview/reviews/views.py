@@ -115,7 +115,7 @@ def create_review(request, id):
             return redirect('home')
         else:
             messages.error(request, "The review is not valid.")
-            return redirect('create_review')
+            return redirect('create_review', ticket.id)
     context = {'create_review_form': create_review_form, 'ticket': ticket}
     return render(request, 'reviews/create_review.html', context=context)
 

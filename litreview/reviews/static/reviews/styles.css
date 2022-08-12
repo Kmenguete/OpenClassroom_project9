@@ -114,6 +114,18 @@
 	width: 150px;
 	position: relative;
 	right: -170px;
-	top: -100px;
+	top: -200px;
 	left: 400px;
+}
+#update_a_review:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+#update_a_ticket:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+#create_a_review:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
 }

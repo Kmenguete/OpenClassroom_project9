@@ -11,8 +11,5 @@ class LoginForm(forms.Form):
 class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'email', 'first_name', 'last_name', 'role')
-        widgets = {
-            'role': forms.Select(attrs={'class': 'user_role'}
-                                 ),
-        }
+        exclude = ('role', )
+        fields = ('username', 'email', 'first_name', 'last_name')

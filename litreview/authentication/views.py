@@ -18,7 +18,8 @@ def signup_page(request):
             messages.success(request, "You have successfully signed up!")
             return redirect(settings.LOGIN_REDIRECT_URL)
         else:
-            messages.error(request, "The sign up form is incomplete.")
+            print(form.errors)
+            messages.error(request, "The sign up form is not valid.")
             return redirect('signup')
     return render(request, 'authentication/signup.html', context={'form': form})
 

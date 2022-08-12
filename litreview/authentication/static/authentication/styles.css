@@ -83,3 +83,8 @@
 	right: -30px;
 	top: -180px;
 }
+.signup_form {
+	position: relative;
+	width: 500px;
+	left: -150px;
+}

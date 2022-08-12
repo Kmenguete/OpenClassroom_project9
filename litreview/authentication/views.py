@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, user_logged_out
 from django.conf import settings
 from authentication.models import User
 from django.views.generic import View
@@ -54,3 +54,10 @@ class LoginPageView(View):
                 messages.error(request, 'Invalid username or password !')
                 return redirect('login')
         return render(request, self.template_name, context={'form': form})
+
+
+def show_message(request, **kwargs):
+    messages.success(request, 'You successfully logged out.')
+
+
+user_logged_out.connect(show_message)

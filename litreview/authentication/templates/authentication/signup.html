@@ -4,9 +4,6 @@
     <link rel="stylesheet" href="{% static 'authentication/styles.css' %}" />
     <div id="sign_up">
     <h2>Sign up to Litreview</h2>
-        {% if form.errors %}
-            {{ form.errors }}
-        {% endif %}
     <form method="post">
         {% csrf_token %}
         <div class="signup_form">

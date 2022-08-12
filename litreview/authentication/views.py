@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.conf import settings
 from authentication.models import User
-from django.contrib.auth.views import LogoutView
 from django.views.generic import View
 
 from . import forms
@@ -55,9 +54,3 @@ class LoginPageView(View):
                 messages.error(request, 'Invalid username or password !')
                 return redirect('login')
         return render(request, self.template_name, context={'form': form})
-
-
-class MyLogoutView(LogoutView):
-
-    def form_valid(self):
-        return messages.success(self.request, 'You successfully logged out.')

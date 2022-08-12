@@ -4,12 +4,29 @@
     <link rel="stylesheet" href="{% static 'authentication/styles.css' %}" />
     <div id="sign_up">
     <h2>Sign up to Litreview</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
     <form method="post">
-        {{ form.as_p }}
         {% csrf_token %}
+        <div class="signup_form">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        </div><br>
+        <div class="signup_form">
+        <input type="email" class="form-control" name="email" placeholder="Email">
+        </div><br>
+        <div class="signup_form">
+        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+        </div><br>
+        <div class="signup_form">
+        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+        </div><br>
+        <div class="signup_form">
+        <input type="password" class="form-control" name="password1" placeholder="Password">
+        </div><br>
+        <div class="signup_form">
+        <input type="password" class="form-control" name="password2" placeholder="Password Confirmation">
+        </div><br>
         <button id="signup_up_button" type="submit">Sign up</button>
     </form>
         <p>Already have an account ? <a href="{% url 'login' %}">Back to login page.</a></p>

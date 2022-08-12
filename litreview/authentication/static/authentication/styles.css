@@ -36,9 +36,9 @@
 	border-radius: 5px;
 	text-align: center;
 	height: 30px;
-	width: 150px;
+	width: 200px;
 	position: relative;
-	right: -25px;
+	left: -25px;
 }
 #change_password:hover {
 	background-color: rgb(100, 100, 100);

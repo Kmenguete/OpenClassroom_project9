@@ -5,7 +5,7 @@ from . import models
 class AskReviewForm(forms.ModelForm):
     class Meta:
         model = models.Ticket
-        fields = ['title', 'description', 'image']
+        fields = ["title", "description", "image"]
 
 
 class CreateReviewForm(forms.ModelForm):
@@ -13,11 +13,11 @@ class CreateReviewForm(forms.ModelForm):
 
     class Meta:
         model = models.Review
-        fields = ['headline', 'rating', 'body']
+        fields = ["headline", "rating", "body"]
 
 
 class CreateNewReviewForm(forms.ModelForm):
     class Meta:
         model = models.Review
-        exclude = ('ticket',)
-        fields = ['headline', 'rating', 'body']
+        exclude = ("ticket",)
+        fields = ["headline", "rating", "body"]

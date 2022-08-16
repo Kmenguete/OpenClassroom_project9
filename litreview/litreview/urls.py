@@ -22,35 +22,49 @@ import authentication.views
 import reviews.views
 import follow.views
 from django.contrib.auth.views import (
-    LogoutView, PasswordChangeView, PasswordChangeDoneView)
+    LogoutView,
+    PasswordChangeView,
+    PasswordChangeDoneView,
+)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', authentication.views.LoginPageView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
-    path('change-password/', PasswordChangeView.as_view(
-        template_name='authentication/password_change_form.html'),
-         name='password_change'
-         ),
-    path('change-password-done/', PasswordChangeDoneView.as_view(
-        template_name='authentication/password_change_done.html'),
-         name='password_change_done'
-         ),
-    path('home/', reviews.views.home, name='home'),
-    path('posts/', reviews.views.posts, name='posts'),
-    path('update_review/<int:id>/', reviews.views.update_review, name='update_review'),
-    path('update_ticket/<int:id>/', reviews.views.update_ticket, name='update_ticket'),
-    path('signup/', authentication.views.signup_page, name='signup'),
-    path('delete_account/<int:id>/delete/', authentication.views.user_delete, name='delete_account'),
-    path('ask_review/', reviews.views.ask_review, name='ask_review'),
-    path('create_review/<int:id>/', reviews.views.create_review, name='create_review'),
-    path('create_new_review/', reviews.views.create_new_review, name='create_new_review'),
-    path('subscriptions/', follow.views.subscriptions, name='subscriptions'),
-    path('search/', follow.views.search_users, name='search_users'),
-    path('follower/', follow.views.follower, name='follower'),
-    path('unfollow_user/<int:id>/', follow.views.unfollow_user, name='unfollow_user'),
+    path("admin/", admin.site.urls),
+    path("", authentication.views.LoginPageView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path(
+        "change-password/",
+        PasswordChangeView.as_view(
+            template_name="authentication/password_change_form.html"
+        ),
+        name="password_change",
+    ),
+    path(
+        "change-password-done/",
+        PasswordChangeDoneView.as_view(
+            template_name="authentication/password_change_done.html"
+        ),
+        name="password_change_done",
+    ),
+    path("home/", reviews.views.home, name="home"),
+    path("posts/", reviews.views.posts, name="posts"),
+    path("update_review/<int:id>/", reviews.views.update_review, name="update_review"),
+    path("update_ticket/<int:id>/", reviews.views.update_ticket, name="update_ticket"),
+    path("signup/", authentication.views.signup_page, name="signup"),
+    path(
+        "delete_account/<int:id>/delete/",
+        authentication.views.user_delete,
+        name="delete_account",
+    ),
+    path("ask_review/", reviews.views.ask_review, name="ask_review"),
+    path("create_review/<int:id>/", reviews.views.create_review, name="create_review"),
+    path(
+        "create_new_review/", reviews.views.create_new_review, name="create_new_review"
+    ),
+    path("subscriptions/", follow.views.subscriptions, name="subscriptions"),
+    path("search/", follow.views.search_users, name="search_users"),
+    path("follower/", follow.views.follower, name="follower"),
+    path("unfollow_user/<int:id>/", follow.views.unfollow_user, name="unfollow_user"),
 ]
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

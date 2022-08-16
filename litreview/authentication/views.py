@@ -10,7 +10,7 @@ from . import forms
 
 def signup_page(request):
     form = forms.SignupForm()
-    if request.method == 'POST':
+    if request.method == "POST":
         form = forms.SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
@@ -20,45 +20,45 @@ def signup_page(request):
         else:
             print(form.errors)
             messages.error(request, "The sign up form is not valid.")
-            return redirect('signup')
-    return render(request, 'authentication/signup.html', context={'form': form})
+            return redirect("signup")
+    return render(request, "authentication/signup.html", context={"form": form})
 
 
 def user_delete(request, id):
     user = User.objects.get(id=id)
-    if request.method == 'POST':
+    if request.method == "POST":
         user.delete()
         return redirect(settings.DELETE_REDIRECT_URL)
-    return render(request, 'authentication/user_delete.html', {'user': user})
+    return render(request, "authentication/user_delete.html", {"user": user})
 
 
 class LoginPageView(View):
-    template_name = 'authentication/login.html'
+    template_name = "authentication/login.html"
     login_form = forms.LoginForm
 
     def get(self, request):
         form = self.login_form()
-        return render(request, self.template_name, context={'form': form})
+        return render(request, self.template_name, context={"form": form})
 
     def post(self, request):
         form = self.login_form(request.POST)
         if form.is_valid():
             user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password'],
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"],
             )
             if user is not None:
                 login(request, user)
-                messages.success(request, f'Happy to see you again {user.username}!')
+                messages.success(request, f"Happy to see you again {user.username}!")
                 return redirect(settings.LOGIN_REDIRECT_URL)
             else:
-                messages.error(request, 'Invalid username or password !')
-                return redirect('login')
-        return render(request, self.template_name, context={'form': form})
+                messages.error(request, "Invalid username or password !")
+                return redirect("login")
+        return render(request, self.template_name, context={"form": form})
 
 
 def show_message(request, **kwargs):
-    messages.success(request, 'You successfully logged out.')
+    messages.success(request, "You successfully logged out.")
 
 
 user_logged_out.connect(show_message)

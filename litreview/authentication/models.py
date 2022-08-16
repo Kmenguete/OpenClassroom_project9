@@ -3,12 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    SUBSCRIBER = 'SUBSCRIBER'
-    ROLE_CHOICES = (
-        (SUBSCRIBER, 'SUBSCRIBER'),
+    SUBSCRIBER = "SUBSCRIBER"
+    ROLE_CHOICES = ((SUBSCRIBER, "SUBSCRIBER"),)
+    profile_photo = models.ImageField(verbose_name="profile picture")
+    role = models.CharField(
+        max_length=50, choices=ROLE_CHOICES, verbose_name="Role", null=True
     )
-    profile_photo = models.ImageField(verbose_name='profile picture')
-    role = models.CharField(max_length=50, choices=ROLE_CHOICES, verbose_name='Role', null=True)
 
     def __str__(self):
         return self.username

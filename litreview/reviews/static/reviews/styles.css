@@ -77,7 +77,7 @@
 	width: 600px;
 	left: -200px;
 }
-#create_a_review {
+.create_a_review {
 	background-color: rgb(50, 50, 50);
 	color: rgb(200, 200, 200);
 	border-radius: 5px;
@@ -93,7 +93,7 @@
 	position: relative;
 	left: 40px;
 }
-#update_a_ticket {
+.update_a_ticket {
 	background-color: rgb(50, 50, 50);
 	color: rgb(200, 200, 200);
 	border-radius: 5px;
@@ -105,7 +105,7 @@
 	top: -210px;
 	left: 200px;
 }
-#update_a_review {
+.update_a_review {
 	background-color: rgb(50, 50, 50);
 	color: rgb(200, 200, 200);
 	border-radius: 5px;
@@ -117,15 +117,15 @@
 	top: -200px;
 	left: 400px;
 }
-#update_a_review:hover {
+.update_a_review:hover {
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }
-#update_a_ticket:hover {
+.update_a_ticket:hover {
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }
-#create_a_review:hover {
+.create_a_review:hover {
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }

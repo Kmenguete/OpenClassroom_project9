@@ -35,3 +35,9 @@ installed, there is some dependencies which are automatically linked to
 Django. In order to keep track of these dependencies run the following 
 command: pip freeze > requirements.txt. Thus, all packages required for 
 the project are stored in this file.
+***
+### 4. Starting the project
+***
+Once you have successfully installed Django, you can clone the project by
+using git clone or git pull with the following address: 
+https://github.com/Kmenguete/OpenClassroom_project9.git

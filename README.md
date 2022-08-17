@@ -41,3 +41,8 @@ the project are stored in this file.
 Once you have successfully installed Django, you can clone the project by
 using git clone or git pull with the following address: 
 https://github.com/Kmenguete/OpenClassroom_project9.git
+When you pulled the project in your local machine, go to the directory 
+litreview(in the terminal) and run the following command:
+python manage.py runserver
+Then you will be able to see the user interface of the django web 
+application.

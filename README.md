@@ -30,11 +30,11 @@ command "env/bin/activate" in the directory you intend to start the
 project. 
 
 Once your virtual environment is activated, install django by running the
-following command in your terminal: pip install django. When Django is 
-installed, there is some dependencies which are automatically linked to 
-Django. In order to keep track of these dependencies run the following 
-command: pip freeze > requirements.txt. Thus, all packages required for 
-the project are stored in this file.
+following command in your terminal (in the directory you intend to start the project): 
+pip install django. When Django is installed, there is some dependencies 
+which are automatically linked to Django. In order to keep track of 
+these dependencies run the following command: pip freeze > requirements.txt. 
+Thus, all packages required for the project are stored in this file.
 ***
 ### 4. Starting the project
 ***

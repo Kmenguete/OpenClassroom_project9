@@ -18,7 +18,7 @@
                     <p>{{ item.ticket.description }}</p><br>
                     <div>
                 {% if item.ticket.image %}
-                    <img class="book_image" src="{{ item.ticket.image.url }}">
+                    <img class="book_image" src="{{ item.ticket.image.url }}" alt="Image of book">
                 {% endif %}
                  </div><br>
                  <div class="star_rating">
@@ -64,7 +64,7 @@
                     <p>{{ item.body }}</p><br>
                     <p>review created on {{ item.time_created }} by {{ item.user }}</p>
                     <form action="{% url 'update_review' item.id %}">
-                        <button id="update_a_review" type="submit">Update review</button>
+                        <button class="update_a_review" type="submit">Update review</button>
                     </form>
              </div><br>
         {% elif item in real_tickets %}
@@ -73,16 +73,16 @@
             <p>{{ item.description }}</p><br>
              <div>
             {% if item.image %}
-                <img class="book_image" src="{{ item.image.url }}">
+                <img class="book_image" src="{{ item.image.url }}" alt="Image of book">
             {% endif %}
              </div><br>
             <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
             </div><br>
             <form action="{% url 'create_review' item.id %}">
-            <button id="create_a_review" type="submit">Create a review</button>
+            <button class="create_a_review" type="submit">Create a review</button>
             </form><br>
             <form action="{% url 'update_ticket' item.id %}">
-            <button id="update_a_ticket" type="submit">Update ticket</button>
+            <button class="update_a_ticket" type="submit">Update ticket</button>
             </form>
         {% endif %}
      {% endfor %}

@@ -18,7 +18,7 @@
                     <p>{{ item.ticket.description }}</p><br>
                     <div>
                 {% if item.ticket.image %}
-                    <img class="book_image" src="{{ item.ticket.image.url }}">
+                    <img class="book_image" src="{{ item.ticket.image.url }}" alt="Image of book">
                 {% endif %}
                  </div><br>
                  <div class="star_rating">
@@ -70,13 +70,13 @@
             <p>{{ item.description }}</p><br>
              <div>
             {% if item.image %}
-                <img class="book_image" src="{{ item.image.url }}">
+                <img class="book_image" src="{{ item.image.url }}" alt="Image of book">
             {% endif %}
              </div><br>
             <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
             </div><br>
             <form action="{% url 'create_review' item.id %}">
-            <button id="create_a_review" type="submit">Create a review</button>
+            <button class="create_a_review" type="submit">Create a review</button>
             </form>
         {% endif %}
      {% endfor %}

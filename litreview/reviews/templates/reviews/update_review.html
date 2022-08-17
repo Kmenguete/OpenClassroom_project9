@@ -10,7 +10,7 @@
             <p>{{ review.ticket.description }}</p><br>
              <div>
             {% if review.ticket.image %}
-                <img class="book_image" src="{{ review.ticket.image.url }}">
+                <img class="book_image" src="{{ review.ticket.image.url }}" alt="Image of book">
             {% endif %}
              </div><br>
             <p>ticket created on {{ review.ticket.time_created }} by {{ review.ticket.user }}</p>
@@ -73,9 +73,7 @@
           <label for="exampleFormControlTextarea3" class="form-label">Comment</label>
           <textarea class="form-control" id="exampleFormControlTextarea3" name="body" rows="3">{{ review.body }}</textarea>
         </div><br>
-        <form action="{% url 'posts' %}">
-             <button id="create_ticket" type="submit">Send</button>
-         </form><br>
+        <button id="create_ticket" type="submit">Send</button>
     </form>
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>

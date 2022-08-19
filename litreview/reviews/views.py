@@ -137,24 +137,26 @@ def ask_review(request):
 @login_required
 def create_review(request, id):
     ticket = models.Ticket.objects.get(id=id)
-    create_review_form = forms.CreateReviewForm()
-    create_review_form.ticket = AskReviewForm(instance=ticket)
-    if request.method == "POST":
-        create_review_form = forms.CreateReviewForm(request.POST)
-        if create_review_form.is_valid():
-            review = create_review_form.save(commit=False)
-            review.user = request.user
-            review.ticket = ticket
-            review.ticket.is_already_replied = True
-            review.save()
-            print(review.ticket.is_already_replied)
-            messages.success(request, "The review has been created successfully.")
-            return redirect("home")
-        else:
-            messages.error(request, "The review is not valid.")
-            return redirect("create_review", ticket.id)
-    context = {"create_review_form": create_review_form, "ticket": ticket}
-    return render(request, "reviews/create_review.html", context=context)
+    if ticket.is_already_replied is False:
+        create_review_form = forms.CreateReviewForm()
+        create_review_form.ticket = AskReviewForm(instance=ticket)
+        if request.method == "POST":
+            create_review_form = forms.CreateReviewForm(request.POST)
+            if create_review_form.is_valid():
+                review = create_review_form.save(commit=False)
+                review.user = request.user
+                review.ticket = ticket
+                ticket.is_already_replied = True
+                review.ticket.is_already_replied = ticket.is_already_replied
+                print(review.ticket.is_already_replied)
+                review.save()
+                messages.success(request, "The review has been created successfully.")
+                return redirect("home")
+            else:
+                messages.error(request, "The review is not valid.")
+                return redirect("create_review", ticket.id)
+        context = {"create_review_form": create_review_form, "ticket": ticket}
+        return render(request, "reviews/create_review.html", context=context)
 
 
 @login_required
@@ -168,12 +170,13 @@ def create_new_review(request: WSGIRequest):
         if form_ask.is_valid() and form_create.is_valid():
             ticket = form_ask.save(commit=False)
             ticket.user = request.user
+            ticket.is_already_replied = not ticket.is_already_replied
             ticket.save()
 
             review = form_create.save(commit=False)
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
-            review.ticket.is_already_replied = True
+            review.ticket.is_already_replied = ticket.is_already_replied
             review.save()
             messages.success(request, "The review has been created successfully.")
             return redirect("home")

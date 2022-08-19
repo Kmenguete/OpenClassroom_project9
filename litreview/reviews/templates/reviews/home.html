@@ -75,9 +75,11 @@
              </div><br>
             <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
             </div><br>
-            <form action="{% url 'create_review' item.id %}">
-            <button class="create_a_review" type="submit">Create a review</button>
-            </form>
+            {% if not item.is_already_replied %}
+                <form action="{% url 'create_review' item.id %}">
+                <button class="create_a_review" type="submit">Create a review</button>
+                </form>
+            {% endif %}
         {% endif %}
      {% endfor %}
      <span>

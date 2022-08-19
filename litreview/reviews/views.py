@@ -137,25 +137,24 @@ def ask_review(request):
 @login_required
 def create_review(request, id):
     ticket = models.Ticket.objects.get(id=id)
-    if not ticket.is_already_replied:
-        create_review_form = forms.CreateReviewForm()
-        create_review_form.ticket = AskReviewForm(instance=ticket)
-        if request.method == "POST":
-            create_review_form = forms.CreateReviewForm(request.POST)
-            if create_review_form.is_valid():
-                review = create_review_form.save(commit=False)
-                review.user = request.user
-                review.ticket = ticket
-                review.ticket.is_already_replied = True
-                review.save()
-                print(review.ticket.is_already_replied)
-                messages.success(request, "The review has been created successfully.")
-                return redirect("home")
-            else:
-                messages.error(request, "The review is not valid.")
-                return redirect("create_review", ticket.id)
-        context = {"create_review_form": create_review_form, "ticket": ticket}
-        return render(request, "reviews/create_review.html", context=context)
+    create_review_form = forms.CreateReviewForm()
+    create_review_form.ticket = AskReviewForm(instance=ticket)
+    if request.method == "POST":
+        create_review_form = forms.CreateReviewForm(request.POST)
+        if create_review_form.is_valid():
+            review = create_review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.ticket.is_already_replied = True
+            review.save()
+            print(review.ticket.is_already_replied)
+            messages.success(request, "The review has been created successfully.")
+            return redirect("home")
+        else:
+            messages.error(request, "The review is not valid.")
+            return redirect("create_review", ticket.id)
+    context = {"create_review_form": create_review_form, "ticket": ticket}
+    return render(request, "reviews/create_review.html", context=context)
 
 
 @login_required

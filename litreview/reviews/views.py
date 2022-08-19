@@ -122,6 +122,7 @@ def ask_review(request):
         if ask_review_form.is_valid():
             ticket = ask_review_form.save(commit=False)
             ticket.user = request.user
+            ticket.is_already_replied = False
             ticket.save()
             messages.success(request, "The ticket has been submitted successfully.")
             return redirect("home")
@@ -143,7 +144,9 @@ def create_review(request, id):
             review = create_review_form.save(commit=False)
             review.user = request.user
             review.ticket = ticket
+            review.ticket.is_already_replied = True
             review.save()
+            print(review.ticket.is_already_replied)
             messages.success(request, "The review has been created successfully.")
             return redirect("home")
         else:
@@ -169,6 +172,7 @@ def create_new_review(request: WSGIRequest):
             review = form_create.save(commit=False)
             review.user = request.user
             review.ticket = Ticket.objects.get(pk=ticket.pk)
+            review.ticket.is_already_replied = True
             review.save()
             messages.success(request, "The review has been created successfully.")
             return redirect("home")

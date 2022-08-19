@@ -75,7 +75,7 @@
              </div><br>
             <p>ticket created on {{ item.time_created }} by {{ item.user }}</p>
             </div><br>
-            {% if not item.is_already_replied %}
+            {% if item.is_already_replied is False %}
                 <form action="{% url 'create_review' item.id %}">
                 <button class="create_a_review" type="submit">Create a review</button>
                 </form>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}" />
+    <div id="ticket_delete">
+    <h1>Delete ticket</h1>
+    <p>Are you sure you want to delete your ticket?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input id="delete_ticket" type="submit" value="Delete">
+    </form>
+    <a href="{% url 'posts' %}">Back to posts page</a>
+    </div>
+{% endblock content %}

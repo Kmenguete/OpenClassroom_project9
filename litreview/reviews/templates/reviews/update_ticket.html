@@ -21,4 +21,7 @@
     <div class="back_to_home_page">
     <a href="{% url 'home' %}">Back to home page</a>
     </div>
+    <div class="delete_ticket">
+        <a href="{% url 'delete_ticket' ticket.id %}">Delete ticket</a>
+    </div>
 {% endblock content %}

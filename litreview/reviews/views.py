@@ -147,6 +147,7 @@ def create_review(request, id):
                 review.user = request.user
                 review.ticket = ticket
                 ticket.is_already_replied = True
+                ticket.save()
                 review.ticket.is_already_replied = ticket.is_already_replied
                 print(review.ticket.is_already_replied)
                 review.save()
@@ -170,7 +171,7 @@ def create_new_review(request: WSGIRequest):
         if form_ask.is_valid() and form_create.is_valid():
             ticket = form_ask.save(commit=False)
             ticket.user = request.user
-            ticket.is_already_replied = not ticket.is_already_replied
+            ticket.is_already_replied = True
             ticket.save()
 
             review = form_create.save(commit=False)

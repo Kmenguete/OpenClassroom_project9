@@ -65,6 +65,9 @@ urlpatterns = [
     path("search/", follow.views.search_users, name="search_users"),
     path("follower/", follow.views.follower, name="follower"),
     path("unfollow_user/<int:id>/", follow.views.unfollow_user, name="unfollow_user"),
+    path("delete_ticket/<int:id>/delete/",
+         reviews.views.delete_ticket,
+         name="delete_ticket"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

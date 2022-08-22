@@ -71,6 +71,9 @@ urlpatterns = [
     path("delete_review/<int:id>/delete/",
          reviews.views.delete_review,
          name="delete_review"),
+    path("delete_new_review/<int:id>/delete/",
+         reviews.views.delete_new_review,
+         name="delete_new_review"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

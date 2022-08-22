@@ -170,6 +170,18 @@ def delete_ticket(request, id):
 
 
 @login_required
+def delete_review(request, id):
+    review = models.Review.objects.get(id=id)
+    if request.method == 'POST':
+        ticket = review.ticket
+        ticket.is_already_replied = False
+        ticket.save()
+        review.delete()
+        return redirect('posts')
+    return render(request, "reviews/delete_review.html", context={"review": review})
+
+
+@login_required
 def create_new_review(request: WSGIRequest):
     form_ask = AskReviewForm(prefix="ask")
     form_create = CreateNewReviewForm(prefix="create")

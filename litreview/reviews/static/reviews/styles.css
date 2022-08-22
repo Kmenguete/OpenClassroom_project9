@@ -129,3 +129,26 @@
 	background-color: rgb(100, 100, 100);
 	cursor: pointer;
 }
+#ticket_delete {
+	width: 150px;
+	margin: auto;
+}
+#delete_ticket {
+	background-color: rgb(50, 50, 50);
+	color: rgb(200, 200, 200);
+	border-radius: 5px;
+	text-align: center;
+	height: 30px;
+	width: 150px;
+	position: relative;
+	right: -25px;
+}
+#delete_ticket:hover {
+	background-color: rgb(100, 100, 100);
+	cursor: pointer;
+}
+.delete_ticket {
+	position: relative;
+	left: 45px;
+	top: 100px;
+}

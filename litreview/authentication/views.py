@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, user_logged_out
 from django.conf import settings
@@ -26,9 +27,12 @@ def signup_page(request):
 
 def user_delete(request, id):
     user = User.objects.get(id=id)
-    if request.method == "POST":
-        user.delete()
-        return redirect(settings.DELETE_REDIRECT_URL)
+    if user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == "POST":
+            user.delete()
+            return redirect(settings.DELETE_REDIRECT_URL)
     return render(request, "authentication/user_delete.html", {"user": user})
 
 

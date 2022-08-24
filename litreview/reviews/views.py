@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -163,33 +164,42 @@ def create_review(request, id):
 @login_required
 def delete_ticket(request, id):
     ticket = models.Ticket.objects.get(id=id)
-    if request.method == 'POST':
-        ticket.delete()
-        return redirect('posts')
+    if ticket.user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == 'POST':
+            ticket.delete()
+            return redirect('posts')
     return render(request, "reviews/delete_ticket.html", context={"ticket": ticket})
 
 
 @login_required
 def delete_review(request, id):
     review = models.Review.objects.get(id=id)
-    if request.method == 'POST':
-        ticket = review.ticket
-        ticket.is_already_replied = False
-        ticket.save()
-        review.delete()
-        return redirect('posts')
+    if review.user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == 'POST':
+            ticket = review.ticket
+            ticket.is_already_replied = False
+            ticket.save()
+            review.delete()
+            return redirect('posts')
     return render(request, "reviews/delete_review.html", context={"review": review})
 
 
 @login_required
 def delete_new_review(request, id):
     review = models.Review.objects.get(id=id)
-    if request.method == 'POST':
-        ticket = review.ticket
-        ticket.is_already_replied = False
-        ticket.delete()
-        review.delete()
-        return redirect('posts')
+    if review.user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == 'POST':
+            ticket = review.ticket
+            ticket.is_already_replied = False
+            ticket.delete()
+            review.delete()
+            return redirect('posts')
     return render(request, "reviews/delete_new_review.html", context={"review": review})
 
 
@@ -228,17 +238,20 @@ def create_new_review(request: WSGIRequest):
 @login_required
 def update_ticket(request, id):
     ticket = Ticket.objects.get(id=id)
-    if request.method == "POST":
-        ask_review_form = forms.AskReviewForm(
-            request.POST, files=request.FILES, instance=ticket
-        )
-        if ask_review_form.is_valid():
-            ask_review_form.save()
-            messages.success(request, "The ticket has been successfully updated.")
-            return redirect("posts")
-        else:
-            messages.error(request, "The ticket is not valid.")
-            return redirect("update_ticket", ticket.id)
+    if ticket.user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == "POST":
+            ask_review_form = forms.AskReviewForm(
+                request.POST, files=request.FILES, instance=ticket
+            )
+            if ask_review_form.is_valid():
+                ask_review_form.save()
+                messages.success(request, "The ticket has been successfully updated.")
+                return redirect("posts")
+            else:
+                messages.error(request, "The ticket is not valid.")
+                return redirect("update_ticket", ticket.id)
     context = {"ticket": ticket}
     return render(request, "reviews/update_ticket.html", context=context)
 
@@ -246,14 +259,17 @@ def update_ticket(request, id):
 @login_required
 def update_review(request, id):
     review = models.Review.objects.get(id=id)
-    if request.method == "POST":
-        create_review_form = forms.CreateReviewForm(request.POST, instance=review)
-        if create_review_form.is_valid():
-            create_review_form.save()
-            messages.success(request, "The review has been successfully updated.")
-            return redirect("posts")
-        else:
-            messages.error(request, "The review is not valid.")
-            return redirect("update_review", review.id)
+    if review.user != request.user:
+        raise PermissionDenied()
+    else:
+        if request.method == "POST":
+            create_review_form = forms.CreateReviewForm(request.POST, instance=review)
+            if create_review_form.is_valid():
+                create_review_form.save()
+                messages.success(request, "The review has been successfully updated.")
+                return redirect("posts")
+            else:
+                messages.error(request, "The review is not valid.")
+                return redirect("update_review", review.id)
     context = {"review": review}
     return render(request, "reviews/update_review.html", context=context)
